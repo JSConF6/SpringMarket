@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts/header :: header(~{::title}, ~{::link}, ~{::script})">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>스프링 마켓</title>
+  <link>
+  <script></script>
+</head>
+<body>
+  <nav th:replace="layouts/nav"></nav>
+  <div class="container user-info">
+    <div th:replace="mypage/mypageNav"></div>
+    <div class="container mt-4 d-flex flex-wrap justify-content-center">
+      <a href="/mypage/wishList" class="border border-dark box d-flex justify-content-center align-items-center flex-column link-dark text-decoration-none">
+        <i class="fa-regular fa-heart fa-2xl mt-5 mb-4"></i>
+        <h2 class="mt-5">관심목록</h2>
+      </a>
+      <a href="/mypage/mySaleList" class="border border-dark box d-flex justify-content-center align-items-center flex-column link-dark text-decoration-none">
+        <i class="fa-solid fa-wallet fa-2xl mt-5 mb-4"></i>
+        <h2 class="mt-5">내 판매목록</h2>
+      </a>
+      <a href="/mypage/myBuyList" class="border border-dark box d-flex justify-content-center align-items-center flex-column link-dark text-decoration-none">
+        <i class="fa-solid fa-cart-shopping fa-2xl mt-5 mb-4"></i>
+        <h2 class="mt-5">내 구매목록</h2>
+      </a>
+      <a href="#" data-bs-toggle="modal" data-bs-target="#chattingListModal" class="border border-dark box d-flex justify-content-center align-items-center flex-column link-dark text-decoration-none">
+        <i class="fa-sharp fa-regular fa-comment fa-2xl mt-5 mb-4"></i>
+        <h2 class="mt-5">채팅목록</h2>
+      </a>
+    </div>
+  </div>
+  <div th:replace="modal/modal"></div>
+  <footer th:replace="layouts/footer"></footer>
+</body>
+</html>

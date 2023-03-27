@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts/header :: header(~{::title}, ~{::link}, ~{::script})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>스프링 마켓 - 회원가입</title>
+    <link>
+    <script></script>
+</head>
+<body>
+    <nav th:replace="layouts/nav"></nav>
+    <main class="auth-form w-100 m-auto mt-5 mb-5">
+        <form>
+            <h1 class="h3 mb-3 fw-normal text-center">SpringMarket</h1>
+
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="email" placeholder="Email"/>
+                <label for="email">아이디</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="password" placeholder="Password"/>
+                <a class="link-dark pw-check"><i class="fa-solid fa-eye fa-xl"></i></a>
+                <label for="password">비밀번호</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="passwordConfirm" placeholder="PasswordConfirm"/>
+                <a class="link-dark pw-check">
+                    <i class="fa-solid fa-eye fa-xl"></i>
+                </a>
+                <label for="passwordConfirm">비밀번호확인</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="nickname" placeholder="NickName"/>
+                <label for="nickname">닉네임</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="phone" placeholder="Phone"/>
+                <label for="phone">전화번호</label>
+            </div>
+            <button class="w-100 btn btn-lg btn-success" type="submit">
+                회원가입
+            </button>
+        </form>
+    </main>
+    <footer th:replace="layouts/footer"></footer>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts/header :: header(~{::title}, ~{::link}, ~{::script})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>스프링 마켓 - 프로필 수정</title>
+    <link>
+    <script></script>
+</head>
+<body>
+    <nav th:replace="layouts/nav"></nav>
+    <main class="auth-form w-100 m-auto mb-5">
+        <form>
+            <div class="d-flex justify-content-center">
+                <div class="ms-4">
+                    <img src="/img/개선.PNG" width="150px" height="150px" class="rounded-circle border border-dark mb-3"/>
+                    <a class="profile-img-change link-dark">
+                        <i class="fa-solid fa-camera fa-xl"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingEmail" placeholder="email@email.com" value="email@email.com" disabled/>
+                <label for="floatingEmail">이메일</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingNickName" placeholder="nickname" value="Solution"/>
+                <label for="floatingNickName">닉네임</label>
+            </div>
+            <button class="w-100 btn btn-lg btn-success" type="submit">
+                프로필 수정
+            </button>
+        </form>
+    </main>
+    <footer th:replace="layouts/footer"></footer>
+</body>
+</html>

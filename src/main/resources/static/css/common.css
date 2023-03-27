@@ -1,0 +1,89 @@
+textarea {
+    resize: none;
+}
+
+.dropdown-mypage {
+    cursor: pointer;
+}
+
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: none;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
+}
+
+.user-info {
+    max-width: 1000px;
+}
+
+.box {
+    width: 250px;
+    height: 250px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.box i {
+    font-size: 100px;
+}
+
+.auth-form {
+    max-width: 550px;
+    padding: 15px;
+}
+
+.product-form {
+    max-width: 700px;
+    padding: 15px;
+}
+
+.pw-check {
+    position: absolute;
+    top: 18px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.img-del-btn {
+    cursor: pointer;
+}
+
+.profile-img-change {
+    position: relative;
+    top: 45px;
+    right: 40px;
+    cursor: pointer;
+}
+
+.place-del-btn {
+    cursor: pointer;
+}
+
+.mypage-list {
+    max-width: 1000px;
+}
+
+.mypage-list-item {
+    height: 200px;
+}
+
+.mypage-count a i {
+    margin-bottom: 100px;
+}
+
+.sale-list {
+    max-width: 1000px;
+}
+
+.sale-list-item {
+    height: 200px;
+}
+
+.sale-count a i {
+    margin-bottom: 100px;
+}

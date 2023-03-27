@@ -1,0 +1,30 @@
+server:
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+
+spring:
+  # MariaDB 설정
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/market?characterEncoding=UTF-8
+    username: solution
+    password: 1234
+  # devtools 설정
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+  # Thymeleaf Cache 설정
+  thymeleaf:
+    cache: false
+
+# MyBatis 설정
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpth:/static/mapper/*.xml

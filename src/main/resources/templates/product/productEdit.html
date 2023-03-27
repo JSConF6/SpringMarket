@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts/header :: header(~{::title}, ~{::link}, ~{::script})">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>스프링 마켓 - 상품수정</title>
+  <link>
+  <script></script>
+</head>
+<body>
+  <nav th:replace="layouts/nav"></nav>
+  <main class="product-form w-100 m-auto mb-5">
+    <h1 class="text-center">상품 수정</h1>
+    <form>
+      <div class="d-flex justify-content-center align-items-center border rounded mb-3 pt-3 pb-3">
+        <a href="#" class="border rounded d-flex flex-column align-items-center justify-content-center link-dark text-decoration-none me-3" style="width: 80px; height: 80px">
+          <i class="fa-solid fa-camera fa-2xl mt-3"></i>
+          <span class="mt-3">5/5</span>
+        </a>
+        <div class="me-4" style="width: 80px; height: 80px">
+          <img src="/img/개선.PNG" width="80px" height="80px" class="border rounded d-flex flex-column align-items-center justify-content-center link-dark text-decoration-none me-3"/>
+          <i class="position-relative fa-solid fa-xmark img-del-btn" style="left: 74px; bottom: 90px"></i>
+        </div>
+
+        <div class="me-4" style="width: 80px; height: 80px">
+          <img src="/img/개선.PNG" width="80px" height="80px" class="border rounded d-flex flex-column align-items-center justify-content-center link-dark text-decoration-none me-3"/>
+          <i class="position-relative fa-solid fa-xmark img-del-btn" style="left: 74px; bottom: 90px"></i>
+        </div>
+        <div class="me-4" style="width: 80px; height: 80px">
+          <img src="/img/개선.PNG" width="80px" height="80px" class="border rounded d-flex flex-column align-items-center justify-content-center link-dark text-decoration-none me-3"/>
+          <i class="position-relative fa-solid fa-xmark img-del-btn" style="left: 74px; bottom: 90px"></i>
+        </div>
+        <div class="me-4" style="width: 80px; height: 80px">
+          <img src="/img/개선.PNG" width="80px" height="80px" class="border rounded d-flex flex-column align-items-center justify-content-center link-dark text-decoration-none me-3"/>
+          <i class="position-relative fa-solid fa-xmark img-del-btn" style="left: 74px; bottom: 90px"></i>
+        </div>
+        <div class="me-4" style="width: 80px; height: 80px">
+          <img src="/img/개선.PNG" width="80px" height="80px" class="border rounded d-flex flex-column align-items-center justify-content-center link-dark text-decoration-none me-3"/>
+          <i class="position-relative fa-solid fa-xmark img-del-btn" style="left: 74px; bottom: 90px"></i>
+        </div>
+      </div>
+      <div class="form-floating mb-3 borader-0">
+        <input type="text" class="form-control" id="title" placeholder="Title" value="게시글 제목"/>
+        <label for="title">글제목</label>
+      </div>
+      <div class="form-floating mb-3 borader-0">
+        <input type="text" class="form-control" id="price" placeholder="Price" value="10,000"/>
+        <label for="price">가격</label>
+      </div>
+      <div class="form-floating mb-3">
+            <textarea class="form-control" placeholder="content" id="floatingContent" style="height: 400px">게시물 내용 게시물 내용 게시물 내용 게시물 내용 게시물 내용 게시물 내용</textarea>
+        <label for="floatingContent">게시물 내용을 작성해주세요</label>
+      </div>
+      <div class="border rounded d-flex justify-content-between mb-3 p-3">
+        <span>거래희망장소</span>
+        <a style="display: none" href="#" data-bs-toggle="modal" data-bs-target="#placeSelectModal" class="link-dark text-decoration-none">장소선택 ></a>
+        <span>장소<i class="fa-solid fa-xmark ms-1 place-del-btn"></i></span>
+      </div>
+      <button class="w-100 btn btn-lg btn-success" type="submit">
+        상품수정
+      </button>
+    </form>
+  </main>
+  <footer th:replace="layouts/footer"></footer>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts/header :: header(~{::title}, ~{::link}, ~{::script})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>스프링 마켓 - 내 판매목록</title>
+    <link>
+    <script></script>
+</head>
+<body>
+    <nav th:replace="layouts/nav"></nav>
+    <div class="container user-info">
+        <div th:replace="mypage/mypageNav"></div>
+        <div class="container mypage-list">
+            <div class="d-flex align-items-center border-bottom mypage-list-item">
+                <img src="/img/개선.PNG" width="150px" height="150px" class="border border-dark me-3"/>
+                <div class="flex-column">
+                    <div class="d-flex justify-content-between align-items-baseline mb-4">
+                        <h2>게시글 제목 게시글 제목 게시글 제목 게시글 제목 게시글 제목 게시글 제목</h2>
+                        <div class="dropdown-center">
+                            <a class="dropdown-toggle link-dark dropdown-mypage" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-ellipsis-vertical fa-2xl"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">거래완료</a></li>
+                                <li><a class="dropdown-item" href="#">게시물 수정</a></li>
+                                <li><a class="dropdown-item" href="#">삭제</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-baseline text-center">
+                        <div>
+                            <span class="badge text-bg-dark fs-6 me-3">판매중</span>
+                            <span class="fs-4">320,000원</span>
+                        </div>
+                        <div class="d-flex">
+                            <span class="d-flex align-items-center me-2">
+                                <i class="fa-sharp fa-regular fa-comment me-1"></i>3
+                            </span>
+                            <span class="d-flex align-items-center">
+                                <i class="fa-regular fa-heart me-1"></i>3
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex align-items-center border-bottom mypage-list-item mb-4">
+                <img src="/img/개선.PNG" width="150px" height="150px" class="border border-dark me-3"/>
+                <div class="flex-column">
+                    <div class="d-flex justify-content-between align-items-baseline mb-4">
+                        <h2>게시글 제목 게시글 제목 게시글 제목 게시글 제목 게시글 제목 게시글 제목</h2>
+                        <div class="dropdown-center">
+                            <a class="dropdown-toggle link-dark dropdown-mypage" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-ellipsis-vertical fa-2xl"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">거래완료</a></li>
+                                <li><a class="dropdown-item" href="#">게시물 수정</a></li>
+                                <li><a class="dropdown-item" href="#">삭제</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-baseline text-center">
+                        <div>
+                            <span class="badge text-bg-dark fs-6 me-3">판매중</span>
+                            <span class="fs-4">320,000원</span>
+                        </div>
+                        <div class="d-flex">
+                            <span class="d-flex align-items-center me-2">
+                                <i class="fa-sharp fa-regular fa-comment me-1"></i>3
+                            </span>
+                            <span class="d-flex align-items-center">
+                                <i class="fa-regular fa-heart me-1"></i>3
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex align-items-center border-bottom mypage-list-item">
+                <img src="/img/개선.PNG" width="150px" height="150px" class="border border-dark me-3"/>
+                <div class="flex-column">
+                    <div class="d-flex justify-content-between align-items-baseline mb-4">
+                        <h2>게시글 제목 게시글 제목 게시글 제목 게시글 제목 게시글 제목 게시글 제목</h2>
+                        <div class="dropdown-center">
+                            <a class="dropdown-toggle link-dark dropdown-mypage" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-ellipsis-vertical fa-2xl"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">거래완료</a></li>
+                                <li><a class="dropdown-item" href="#">게시물 수정</a></li>
+                                <li><a class="dropdown-item" href="#">삭제</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-baseline text-center">
+                        <div>
+                            <span class="badge text-bg-dark fs-6 me-3">판매중</span>
+                            <span class="fs-4">320,000원</span>
+                        </div>
+                        <div class="d-flex">
+                            <span class="d-flex align-items-center me-2">
+                                <i class="fa-sharp fa-regular fa-comment me-1"></i>3
+                            </span>
+                            <span class="d-flex align-items-center">
+                                <i class="fa-regular fa-heart me-1"></i>3
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="modal/modal"></div>
+    <footer th:replace="layouts/footer"></footer>
+</body>
+</html>
