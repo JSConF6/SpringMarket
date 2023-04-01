@@ -4,7 +4,7 @@
 <div th:fragment="modal">
     <!-- passwordChangeModal -->
     <div class="modal fade" id="passwordChangeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="passwordChangeModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="passwordChangeModalLabel">
@@ -15,20 +15,20 @@
           <div class="modal-body">
             <div class="form-floating mb-3">
               <input type="password" class="form-control" id="changeCurrentPassword" placeholder="Password"/>
-              <a class="link-dark pw-check"><i class="fa-solid fa-eye fa-xl"></i>
+              <a class="link-dark pw-check cursor-pointer"><i class="fa-solid fa-eye fa-xl"></i>
               </a>
               <label for="changeCurrentPassword">현재 비밀번호</label>
             </div>
             <div class="form-floating mb-3">
               <input type="password" class="form-control" id="changePassword" placeholder="Password"/>
-              <a class="link-dark pw-check">
+              <a class="link-dark pw-check cursor-pointer">
                 <i class="fa-solid fa-eye fa-xl"></i>
               </a>
               <label for="changePassword">변경 비밀번호</label>
             </div>
             <div class="form-floating mb-3">
               <input type="password" class="form-control" id="changePasswordConfirm" placeholder="changePasswordConfirm"/>
-              <a class="link-dark pw-check">
+              <a class="link-dark pw-check cursor-pointer">
                 <i class="fa-solid fa-eye fa-xl"></i>
               </a>
               <label for="changePasswordConfirm">변경 비밀번호 확인</label>
@@ -43,7 +43,7 @@
 
     <!-- withdrawModal -->
     <div class="modal fade" id="withdrawModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="withdrawModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="withdrawModalLabel">탈퇴</h1>
@@ -56,7 +56,7 @@
             </div>
             <div class="form-floating mb-3">
               <input type="password" class="form-control" id="withCurrentPassword" placeholder="Password"/>
-              <a class="link-dark pw-check">
+              <a class="link-dark pw-check cursor-pointer">
                 <i class="fa-solid fa-eye fa-xl"></i>
               </a>
               <label for="withCurrentPassword">현재 비밀번호</label>
@@ -71,7 +71,7 @@
 
     <!-- chattingListModal -->
     <div class="modal fade" id="chattingListModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="chattingListModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="chattingListModalLabel">채팅목록</h1>
@@ -79,23 +79,32 @@
           </div>
           <div class="modal-body">
             <a href="#" data-bs-toggle="modal" data-bs-target="#chattingModal" class="link-dark text-decoration-none d-flex justify-content-between border ps-2 mb-2">
-              <div>
-                <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark mt-3 mb-3"/>
-                <span>닉네임</span>
+              <div class="d-flex align-items-center">
+                <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark mt-3 mb-3 me-3"/>
+                <div class="d-flex flex-column">
+                  <span>닉네임</span>
+                  <span>최근 채팅 1개 보여주기</span>
+                </div>
               </div>
               <img src="/img/개선.PNG" width="50px" height="50px" class="rounded border border-dark mt-3 mb-3 me-2"/>
             </a>
             <a href="#" data-bs-toggle="modal" data-bs-target="#chattingModal" class="link-dark text-decoration-none d-flex justify-content-between border ps-2 mb-2">
-              <div>
-                <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark mt-3 mb-3"/>
-                <span>닉네임</span>
+              <div class="d-flex align-items-center">
+                <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark mt-3 mb-3 me-3"/>
+                <div class="d-flex flex-column">
+                  <span>닉네임</span>
+                  <span>최근 채팅 1개 보여주기</span>
+                </div>
               </div>
               <img src="/img/개선.PNG" width="50px" height="50px" class="rounded border border-dark mt-3 mb-3 me-2"/>
             </a>
             <a href="#" data-bs-toggle="modal" data-bs-target="#chattingModal" class="link-dark text-decoration-none d-flex justify-content-between border ps-2 mb-2">
-              <div>
-                <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark mt-3 mb-3"/>
-                <span>닉네임</span>
+              <div class="d-flex align-items-center">
+                <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark mt-3 mb-3 me-3"/>
+                <div class="d-flex flex-column">
+                  <span>닉네임</span>
+                  <span>최근 채팅 1개 보여주기</span>
+                </div>
               </div>
               <img src="/img/개선.PNG" width="50px" height="50px" class="rounded border border-dark mt-3 mb-3 me-2"/>
             </a>
@@ -106,7 +115,7 @@
 
     <!-- chattingModal -->
     <div class="modal fade" id="chattingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="chattingModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header justify-content-between">
             <a href="#" data-bs-toggle="modal" data-bs-target="#chattingListModal" class="link-dark text-decoration-none" id="chattingBackBtn">
@@ -125,24 +134,78 @@
                 <span>320,000원</span>
               </div>
             </div>
-            <div>
-              <div class="ps-3 d-flex align-items-center mt-2 mb-1">
+            <div class="chat-container">
+              <div class="ps-2 d-flex align-items-center mt-2 mb-1">
                 <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark"/>
-                <div class="rounded-pill border ms-2 p-2 h-100" style="width: 408px">채팅메시지</div>
+                <div class="rounded border ms-2 me-2 p-2 h-100 chat-message">
+                  <span>채팅메시지</span>
+                </div>
+                <span class="text-muted me-2 chat-date">13:30</span>
               </div>
-              <div class="ps-3 d-flex align-items-center mt-2 mb-1">
+              <div class="ps-2 d-flex align-items-center mt-2 mb-1">
                 <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark"/>
-                <div class="rounded-pill border ms-2 p-2 h-100" style="width: 408px">채팅메시지</div>
+                <div class="rounded border ms-2 me-2 p-2 h-100 chat-message">
+                  <span>채팅메시지</span>
+                </div>
+                <span class="text-muted me-2 chat-date">13:30</span>
               </div>
               <div class="ps-3 d-flex justify-content-end me-3 align-content-center mt-2">
-                <div class="rounded-pill border ms-2 p-2 h-100 text-end" style="width: 408px">채팅메시지</div>
+                <span class="text-muted my-chat-date">13:30</span>
+                <div class="rounded border ms-2 p-2 h-100 text-end chat-message">
+                  <span>채팅메시지</span>
+                </div>
+              </div>
+              <div class="ps-3 d-flex justify-content-end me-3 align-content-center mt-2">
+                <span class="text-muted my-chat-date">13:30</span>
+                <div class="rounded border ms-2 p-2 h-100 text-end chat-message">
+                  <span>채팅메시지</span>
+                </div>
+              </div>
+              <div class="ps-2 d-flex align-items-center mt-2 mb-1">
+                <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark"/>
+                <div class="rounded border ms-2 me-2 p-2 h-100 chat-message">
+                  <span>채팅메시지</span>
+                </div>
+                <span class="text-muted me-2 chat-date">13:30</span>
+              </div>
+              <div class="ps-3 d-flex justify-content-end me-3 align-content-center mt-2">
+                <span class="text-muted my-chat-date">13:30</span>
+                <div class="rounded border ms-2 p-2 h-100 text-end chat-message">
+                  <span>채팅메시지</span>
+                </div>
+              </div>
+              <div class="ps-2 d-flex align-items-center mt-2 mb-1">
+                <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark"/>
+                <div class="rounded border ms-2 me-2 p-2 h-100 chat-message">
+                  <span>채팅메시지</span>
+                </div>
+                <span class="text-muted me-2 chat-date">13:30</span>
+              </div>
+              <div class="ps-3 d-flex justify-content-end me-3 align-content-center mt-2">
+                <span class="text-muted my-chat-date">13:30</span>
+                <div class="rounded border ms-2 p-2 h-100 text-end chat-message">
+                  <span>채팅메시지</span>
+                </div>
+              </div>
+              <div class="ps-2 d-flex align-items-center mt-2 mb-1">
+                <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark"/>
+                <div class="rounded border ms-2 me-2 p-2 h-100 chat-message">
+                  <span>채팅메시지</span>
+                </div>
+                <span class="text-muted me-2 chat-date">13:30</span>
+              </div>
+              <div class="ps-3 d-flex justify-content-end me-3 align-content-center mt-2">
+                <span class="text-muted my-chat-date">13:30</span>
+                <div class="rounded border ms-2 p-2 h-100 text-end chat-message">
+                  <span>채팅메시지</span>
+                </div>
               </div>
             </div>
           </div>
           <div class="modal-footer">
             <form class="d-flex" id="chattingMessageForm">
-              <input class="rounded-pill border ms-2 p-2 h-100" style="width: 440px" placeholder="메시지를 입력해주세요"/>
-              <button type="button" class="link-dark text-decoration-none ms-1 p-0" style="border: none; background: none">
+              <input class="rounded border ms-2 p-2 h-100 chat-message-form" placeholder="메시지를 입력해주세요"/>
+              <button type="button" class="link-dark text-decoration-none ms-1 p-0 chat-send-btn">
                 <i class="fa-solid fa-paper-plane fa-xl"></i>
               </button>
             </form>
@@ -154,7 +217,7 @@
 
   <!-- placeSelectModal -->
   <div class="modal fade" id="placeSelectModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="placeSelectModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="placeSelectModalLabel">장소선택</h1>
@@ -164,11 +227,11 @@
           <div>지도 들어갈 자리</div>
         </div>
         <div class="modal-footer">
-          <div class="form-floating" style="width: 348px">
+          <div class="form-floating place-name">
             <input type="text" class="form-control" id="placeName" placeholder="placeName"/>
             <label for="placeName">장소명을 입력해주세요</label>
           </div>
-          <button type="button" class="btn btn-primary" style="height: 58px">
+          <button type="button" class="btn btn-primary place-register-btn">
             거래장소등록
           </button>
         </div>

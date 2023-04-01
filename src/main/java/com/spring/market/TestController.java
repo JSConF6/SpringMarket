@@ -53,7 +53,7 @@ public class TestController {
 
     @GetMapping("/mypage")
     public String mypage() {
-        return "mypage/mypage";
+        return "mypage/myPage";
     }
 
     @GetMapping("/mypage/profileEdit")

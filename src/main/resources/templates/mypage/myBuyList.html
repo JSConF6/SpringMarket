@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>스프링 마켓 - 내 구매목록</title>
-    <link>
+    <link rel="stylesheet" th:href="@{/css/mypage.css}">
     <script></script>
 </head>
 <body>
     <nav th:replace="layouts/nav"></nav>
     <div class="container user-info">
-        <div th:replace="mypage/mypageNav"></div>
+        <div th:replace="myPage/myPageNav"></div>
         <div class="container mypage-list">
             <div class="d-flex align-items-center border-bottom mypage-list-item">
                 <img src="/img/개선.PNG" width="150px" height="150px" class="border border-dark me-3"/>

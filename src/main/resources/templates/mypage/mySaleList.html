@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>스프링 마켓 - 내 판매목록</title>
-    <link>
+    <link rel="stylesheet" th:href="@{/css/mypage.css}">
     <script></script>
 </head>
 <body>
     <nav th:replace="layouts/nav"></nav>
     <div class="container user-info">
-        <div th:replace="mypage/mypageNav"></div>
+        <div th:replace="myPage/myPageNav"></div>
         <div class="container mypage-list">
             <div class="d-flex align-items-center border-bottom mypage-list-item">
                 <img src="/img/개선.PNG" width="150px" height="150px" class="border border-dark me-3"/>
@@ -18,7 +18,7 @@
                     <div class="d-flex justify-content-between align-items-baseline mb-4">
                         <h2>게시글 제목 게시글 제목 게시글 제목 게시글 제목 게시글 제목 게시글 제목</h2>
                         <div class="dropdown-center">
-                            <a class="dropdown-toggle link-dark dropdown-mypage" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="dropdown-toggle link-dark cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-solid fa-ellipsis-vertical fa-2xl"></i>
                             </a>
                             <ul class="dropdown-menu">
@@ -50,7 +50,7 @@
                     <div class="d-flex justify-content-between align-items-baseline mb-4">
                         <h2>게시글 제목 게시글 제목 게시글 제목 게시글 제목 게시글 제목 게시글 제목</h2>
                         <div class="dropdown-center">
-                            <a class="dropdown-toggle link-dark dropdown-mypage" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="dropdown-toggle link-dark cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-solid fa-ellipsis-vertical fa-2xl"></i>
                             </a>
                             <ul class="dropdown-menu">
@@ -82,7 +82,7 @@
                     <div class="d-flex justify-content-between align-items-baseline mb-4">
                         <h2>게시글 제목 게시글 제목 게시글 제목 게시글 제목 게시글 제목 게시글 제목</h2>
                         <div class="dropdown-center">
-                            <a class="dropdown-toggle link-dark dropdown-mypage" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="dropdown-toggle link-dark " data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-solid fa-ellipsis-vertical fa-2xl"></i>
                             </a>
                             <ul class="dropdown-menu">

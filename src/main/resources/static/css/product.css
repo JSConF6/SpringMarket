@@ -2,3 +2,26 @@
     max-width: 700px;
     padding: 15px;
 }
+
+.product-form {
+    max-width: 700px;
+    padding: 15px;
+}
+
+.product-img {
+    width: 80px;
+    height: 80px;
+}
+
+.product-del-btn {
+    left: 74px;
+    bottom: 90px;
+}
+
+.order-state-select {
+    width: 120px;
+}
+
+#floatingContent {
+    height: 400px;
+}

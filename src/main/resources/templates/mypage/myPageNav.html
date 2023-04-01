@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-  <div class="container" th:fragment="mypageNav">
+  <div class="container" th:fragment="myPageNav">
     <div class="border-top border-bottom mt-4 d-flex justify-content-between align-items-center">
       <div>
         <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark mt-3 mb-3 me-3"/>
@@ -10,7 +10,7 @@
       <div class="d-flex align-items-center">
         <a href="/mypage/profileEdit" type="button" class="btn btn-outline-dark me-3">프로필 수정</a>
         <div class="dropdown-center">
-          <a class="dropdown-toggle link-dark dropdown-mypage" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="dropdown-toggle link-dark cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa-solid fa-gear fa-2xl"></i>
           </a>
           <ul class="dropdown-menu">

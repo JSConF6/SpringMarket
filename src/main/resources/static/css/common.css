@@ -2,8 +2,16 @@ textarea {
     resize: none;
 }
 
-.dropdown-mypage {
-    cursor: pointer;
+.red {
+    color: red;
+}
+
+.hide {
+ display: none;
+}
+
+.show {
+    display: block;
 }
 
 .dropdown-toggle::after {
@@ -15,10 +23,6 @@ textarea {
     border-right: 0;
     border-bottom: 0;
     border-left: 0;
-}
-
-.user-info {
-    max-width: 1000px;
 }
 
 .box {
@@ -37,53 +41,54 @@ textarea {
     padding: 15px;
 }
 
-.product-form {
-    max-width: 700px;
-    padding: 15px;
-}
-
 .pw-check {
     position: absolute;
     top: 18px;
     right: 10px;
-    cursor: pointer;
 }
 
-.img-del-btn {
-    cursor: pointer;
+.cursor-pointer {
+    cursor : pointer;
 }
 
-.profile-img-change {
+.alarm-count {
+    width: 35px;
+}
+
+.chat-container {
+    overflow: auto;
+    height: 400px;
+}
+
+.chat-message {
+    width: 408px;
+}
+
+.chat-message-form {
+    width: 440px;
+}
+
+.chat-date {
     position: relative;
-    top: 45px;
-    right: 40px;
-    cursor: pointer;
+    top: 13px;
+    font-size: 12px;
 }
 
-.place-del-btn {
-    cursor: pointer;
+.chat-send-btn {
+    border: none;
+    background: none;
 }
 
-.mypage-list {
-    max-width: 1000px;
+.my-chat-date {
+    position: relative;
+    top: 23px;
+    font-size: 12px;
 }
 
-.mypage-list-item {
-    height: 200px;
+.place-name {
+    width: 348px;
 }
 
-.mypage-count a i {
-    margin-bottom: 100px;
-}
-
-.sale-list {
-    max-width: 1000px;
-}
-
-.sale-list-item {
-    height: 200px;
-}
-
-.sale-count a i {
-    margin-bottom: 100px;
+.place-register-btn {
+    height: 58px;
 }
