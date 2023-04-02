@@ -25,18 +25,22 @@
 <!--              </ul>-->
 <!--            </a>-->
 <!--          </li>-->
-          <li class="nav-item">
-            <span class="p-2">닉네임</span>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link link-dark px-2">로그아웃</a>
-          </li>
-          <li class="nav-item">
-            <a href="/signin" class="nav-link link-dark px-2">로그인</a>
-          </li>
-          <li class="nav-item">
-            <a href="/signup" class="nav-link link-dark px-2">회원가입</a>
-          </li>
+          <div class="d-flex" th:if="${user != null}">
+            <li class="nav-item">
+              <a class="nav-link link-dark px-2" th:text="${user.nickname}">닉네임</a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/logout}" class="nav-link link-dark px-2">로그아웃</a>
+            </li>
+          </div>
+          <div class="d-flex" th:if="${user == null}">
+            <li class="nav-item">
+              <a th:href="@{/signin}" class="nav-link link-dark px-2">로그인</a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/signup}" class="nav-link link-dark px-2">회원가입</a>
+            </li>
+          </div>
         </ul>
       </div>
     </nav>
@@ -70,7 +74,7 @@
             </div>
           </a>
 
-          <a href="#" data-bs-toggle="modal" data-bs-target="#chattingListModal" class="me-3 link-dark text-decoration-none text-center">
+          <a th:if="${user != null}" data-bs-toggle="modal" data-bs-target="#chattingListModal" class="me-3 link-dark text-decoration-none text-center cursor-pointer" id="navChatBtn">
             <i class="fa-sharp fa-solid fa-comment fa-2xl"></i>
             <div class="mt-2">
               <div class="position-relative">
