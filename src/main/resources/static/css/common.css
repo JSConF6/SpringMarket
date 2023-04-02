@@ -55,6 +55,11 @@ textarea {
     width: 35px;
 }
 
+.chat-count {
+    bottom : 10px;
+    left : 35px;
+}
+
 .chat-container {
     overflow: auto;
     height: 400px;
