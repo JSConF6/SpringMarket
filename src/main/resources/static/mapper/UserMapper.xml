@@ -5,4 +5,14 @@
 <mapper namespace="com.spring.market.domain.user.UserMapper">
 
 
+    <select id="findMember" parameterType="com.spring.market.domain.user.dto.SignInDto" resultType="int">
+        SELECT COUNT(*)
+        FROM user
+        WHERE username = #{username}
+    </select>
+    <insert id="join" parameterType="com.spring.market.domain.user.dto.SignInDto">
+        INSERT INTO user(username,password,nickname,phone_number,create_at,update_at)
+        VALUES(#{username},#{password},#{nickname},#{phone_number},NOW(),NOW())
+    </insert>
+
 </mapper>
