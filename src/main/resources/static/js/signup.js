@@ -110,11 +110,7 @@ $(document).ready(function () {
            e.preventDefault();
            alert("필수 입력사항을 모두 입력해주세요");
        }
-
-
     });
-
-
 })
 
 
