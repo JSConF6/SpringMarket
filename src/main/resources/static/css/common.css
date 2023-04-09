@@ -7,7 +7,7 @@ textarea {
 }
 
 .hide {
- display: none;
+    display: none;
 }
 
 .show {
@@ -96,4 +96,52 @@ textarea {
 
 .place-register-btn {
     height: 58px;
+}
+
+.banner-container {
+    width: 1296px;
+    height: 250px;
+}
+
+.search-form {
+    width: 1200px;
+    height: 55px;
+}
+
+.search-btn {
+    width: 120px;
+}
+
+.category-item {
+    width: 189px;
+    height: 55px;
+    border-radius: 14px;
+    border: 1px solid grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.category-item span {
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.category-item.category-active span {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+}
+
+.category-active {
+    background-color: #198754;
+}
+
+#product-select {
+    width: 100px;
+    border: 1px solid #ced4da;
 }

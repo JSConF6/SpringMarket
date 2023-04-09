@@ -1,91 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
-  <div th:fragment="nav">
-    <nav class="bg-light border-bottom">
-      <div class="container d-flex flex-wrap justify-content-end">
-        <ul class="nav align-items-center">
-          <!-- 알림 주석 -->
-<!--          <li class="nav-item me-1">-->
-<!--            <a href="#" class="link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--              <div class="alarm-count">-->
-<!--                <i class="fa-solid fa-bell fa-lg"></i>-->
-<!--                <span class="position-relative translate-middle badge rounded-pill bg-danger">0</span>-->
-<!--              </div>-->
-<!--              <ul class="dropdown-menu">-->
-<!--                <li>-->
-<!--                  <a class="dropdown-item chatBtn" data-bs-toggle="modal" data-bs-target="#chattingModal" href="#" data-chat="nav">닉네임에게 채팅이 왔습니다.</a>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                  <a class="dropdown-item chatBtn" data-bs-toggle="modal" data-bs-target="#chattingModal" href="#" data-chat="nav">닉네임에게 채팅이 왔습니다.</a>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                  <a class="dropdown-item chatBtn" data-bs-toggle="modal" data-bs-target="#chattingModal" href="#" data-chat="nav">닉네임에게 채팅이 왔습니다.</a>-->
-<!--                </li>-->
-<!--              </ul>-->
-<!--            </a>-->
-<!--          </li>-->
-          <div class="d-flex" th:if="${user != null}">
-            <li class="nav-item">
-              <a class="nav-link link-dark px-2" th:text="${user.nickname}">닉네임</a>
-            </li>
-            <li class="nav-item">
-              <a th:href="@{/logout}" class="nav-link link-dark px-2">로그아웃</a>
-            </li>
-          </div>
-          <div class="d-flex" th:if="${user == null}">
-            <li class="nav-item">
-              <a th:href="@{/auth/signin}" class="nav-link link-dark px-2">로그인</a>
-            </li>
-            <li class="nav-item">
-              <a th:href="@{/auth/signup}" class="nav-link link-dark px-2">회원가입</a>
-            </li>
-          </div>
-        </ul>
-      </div>
-    </nav>
-    <header class="py-2 border-bottom">
-      <div class="container d-flex flex-wrap justify-content-between align-items-center">
+<div th:fragment="nav">
+  <header class="p-3 text-bg-success">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-between">
         <div>
-          <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+          <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
             <span class="fs-4">SpringMarket</span>
           </a>
         </div>
-        <div class="w-50">
-          <form action="/search" class="col-12 col-lg-auto mb-3 mb-lg-0 input-group" role="search">
-            <input type="search" class="form-control" placeholder="상품 제목을 입력해주세요" aria-label="Search"/>
-            <button class="btn btn-outline-secondary" type="submit" id="button-addon1">
-              <i class="fa-solid fa-magnifying-glass fa-xl"></i>
-            </button>
-          </form>
-        </div>
-        <div class="d-flex mt-3 align-items-center">
-          <a href="/mypage" class="me-3 link-dark text-decoration-none text-center">
-            <i class="fa-solid fa-user fa-2xl"></i>
-            <div class="mt-2">
-              <span class="mt-3">마이페이지</span>
-            </div>
-          </a>
-  
-          <a href="/product/productAdd" class="me-3 link-dark text-decoration-none text-center">
-            <i class="fa-solid fa-cart-shopping fa-2xl"></i>
-            <div class="mt-2">
-              <span class="mt-3">상품등록</span>
-            </div>
-          </a>
 
-          <a th:if="${user != null}" data-bs-toggle="modal" data-bs-target="#chattingListModal" class="me-3 link-dark text-decoration-none text-center cursor-pointer" id="navChatBtn">
-            <i class="fa-sharp fa-solid fa-comment fa-2xl"></i>
-            <div class="mt-2">
-              <div class="position-relative">
-                <span class="position-absolute translate-middle badge rounded-pill bg-danger chat-count">0</span>
-              </div>
-              <span>채팅방</span>
-            </div>
-          </a>
+        <div>
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" th:if="${session.user == null}">
+            <li class="nav-item">
+              <a th:href="@{/auth/signin}" class="nav-link text-white px-2">로그인</a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/auth/signup}" class="nav-link text-white px-2">회원가입</a>
+            </li>
+          </ul>
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" th:if="${session.user != null}">
+            <li class="nav-item">
+              <a class="nav-link text-white px-2" th:href="@{/mypage}">채팅방</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white px-2" th:href="@{/mypage}">마이페이지</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white px-2" th:href="@{/product/productAdd}">상품등록</a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/auth/logout}" class="nav-link text-white px-2">로그아웃</a>
+            </li>
+          </ul>
         </div>
       </div>
-    </header>
-  </div>
+    </div>
+  </header>
+</div>
 </body>
 </html>

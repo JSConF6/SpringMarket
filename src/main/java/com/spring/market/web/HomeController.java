@@ -26,9 +26,4 @@ public class HomeController {
     public String findPw() {
         return "findPw";
     }
-
-    @GetMapping("/search")
-    public String search() {
-        return "search";
-    }
 }
