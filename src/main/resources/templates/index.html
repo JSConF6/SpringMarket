@@ -8,202 +8,202 @@
     <script type="text/javascript" th:src="@{/js/main.js}"></script>
 </head>
 <body>
-<nav th:replace="layouts/nav"></nav>
-<div class="m-auto banner-container mt-3 mb-3">
-    <div id="carouselExampleFade" class="carousel slide carousel-fade rounded-4" data-bs-ride="carousel">
-        <div class="carousel-inner rounded-4">
-            <div class="carousel-item active">
-                <img th:src="@{/img/Banner1.PNG}" class="d-block w-100" width="250px" height="250px" alt="..."/>
+    <nav th:replace="layouts/nav"></nav>
+    <div class="m-auto banner-container mt-3 mb-3">
+        <div id="carouselExampleFade" class="carousel slide carousel-fade rounded-4" data-bs-ride="carousel">
+            <div class="carousel-inner rounded-4">
+                <div class="carousel-item active">
+                    <img th:src="@{/img/Banner1.PNG}" class="d-block w-100" width="250px" height="250px" alt="..."/>
+                </div>
+                <div class="carousel-item">
+                    <img th:src="@{/img/Banner2.PNG}" class="d-block w-100" width="250px" height="250px" alt="..."/>
+                </div>
+                <div class="carousel-item">
+                    <img th:src="@{/img/Banner3.PNG}" class="d-block w-100" width="250px" height="250px" alt="..."/>
+                </div>
             </div>
-            <div class="carousel-item">
-                <img th:src="@{/img/Banner2.PNG}" class="d-block w-100" width="250px" height="250px" alt="..."/>
-            </div>
-            <div class="carousel-item">
-                <img th:src="@{/img/Banner3.PNG}" class="d-block w-100" width="250px" height="250px" alt="..."/>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-</div>
-<div class="container">
-    <div class="d-flex justify-content-center mb-3">
-        <div class="ms-3 me-3">
-            <div class="category-item">
-                <span>카테고리 이름1</span>
-            </div>
-        </div>
-        <div class="ms-3 me-3">
-            <div class="category-item">
-                <span>카테고리 이름2</span>
-            </div>
-        </div>
-        <div class="ms-3 me-3">
-            <div class="category-item">
-                <span>카테고리 이름3</span>
-            </div>
-        </div>
-        <div class="ms-3 me-3">
-            <div class="category-item">
-                <span>카테고리 이름4</span>
-            </div>
-        </div>
-        <div class="ms-3 me-3">
-            <div class="category-item">
-                <span>카테고리 이름5</span>
-            </div>
-        </div>
-        <div class="ms-3 me-3">
-            <div class="category-item">
-                <span>카테고리 이름6</span>
-            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </div>
-    <div class="d-flex justify-content-center mb-3">
-        <select class="form-select me-3" id="product-select" aria-label="Default select example">
-            <option value="title">제목</option>
-            <option value="content">내용</option>
-        </select>
-        <input type="search" class="form-control me-3 search-input" placeholder="제목을 입력해주세요"/>
-        <button class="btn btn-outline-secondary search-btn" id="button-addon1">
-            <span class="fs-4">검색</span>
-        </button>
+    <div class="container">
+        <div class="d-flex justify-content-center mb-3">
+            <div class="ms-3 me-3">
+                <div class="category-item">
+                    <span>카테고리 이름1</span>
+                </div>
+            </div>
+            <div class="ms-3 me-3">
+                <div class="category-item">
+                    <span>카테고리 이름2</span>
+                </div>
+            </div>
+            <div class="ms-3 me-3">
+                <div class="category-item">
+                    <span>카테고리 이름3</span>
+                </div>
+            </div>
+            <div class="ms-3 me-3">
+                <div class="category-item">
+                    <span>카테고리 이름4</span>
+                </div>
+            </div>
+            <div class="ms-3 me-3">
+                <div class="category-item">
+                    <span>카테고리 이름5</span>
+                </div>
+            </div>
+            <div class="ms-3 me-3">
+                <div class="category-item">
+                    <span>카테고리 이름6</span>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mb-3">
+            <select class="form-select me-3" id="product-select" aria-label="Default select example">
+                <option value="title">제목</option>
+                <option value="content">내용</option>
+            </select>
+            <input type="search" class="form-control me-3 search-input" placeholder="제목을 입력해주세요"/>
+            <button class="btn btn-outline-secondary search-btn" id="button-addon1">
+                <span class="fs-4">검색</span>
+            </button>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <a href="/product/productDetail" class="col link-dark text-decoration-none">
+                <div class="card shadow-sm">
+                    <img src="./img/개선.PNG" class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <span class="card-text">상품이름</span>
+                        <div class="d-flex justify-content-between">
+                            <span>860,000원</span>
+                            <div>
+                                <i class="fa-regular fa-heart me-1"></i><span>3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/product/productDetail" class="col link-dark text-decoration-none">
+                <div class="card shadow-sm">
+                    <img src="./img/개선.PNG" class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <span class="card-text">상품이름</span>
+                        <div class="d-flex justify-content-between">
+                            <span>860,000원</span>
+                            <div>
+                                <i class="fa-regular fa-heart me-1"></i><span>3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/product/productDetail" class="col link-dark text-decoration-none">
+                <div class="card shadow-sm">
+                    <img src="./img/개선.PNG" class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <span class="card-text">상품이름</span>
+                        <div class="d-flex justify-content-between">
+                            <span>860,000원</span>
+                            <div>
+                                <i class="fa-regular fa-heart me-1"></i><span>3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/product/productDetail" class="col link-dark text-decoration-none">
+                <div class="card shadow-sm">
+                    <img src="./img/개선.PNG" class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <span class="card-text">상품이름</span>
+                        <div class="d-flex justify-content-between">
+                            <span>860,000원</span>
+                            <div>
+                                <i class="fa-regular fa-heart me-1"></i><span>3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/product/productDetail" class="col link-dark text-decoration-none">
+                <div class="card shadow-sm">
+                    <img src="./img/개선.PNG" class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <span class="card-text">상품이름</span>
+                        <div class="d-flex justify-content-between">
+                            <span>860,000원</span>
+                            <div>
+                                <i class="fa-regular fa-heart me-1"></i><span>3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/product/productDetail" class="col link-dark text-decoration-none">
+                <div class="card shadow-sm">
+                    <img src="./img/개선.PNG" class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <span class="card-text">상품이름</span>
+                        <div class="d-flex justify-content-between">
+                            <span>860,000원</span>
+                            <div>
+                                <i class="fa-regular fa-heart me-1"></i><span>3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/product/productDetail" class="col link-dark text-decoration-none">
+                <div class="card shadow-sm">
+                    <img src="./img/개선.PNG" class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <span class="card-text">상품이름</span>
+                        <div class="d-flex justify-content-between">
+                            <span>860,000원</span>
+                            <div>
+                                <i class="fa-regular fa-heart me-1"></i><span>3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/product/productDetail" class="col link-dark text-decoration-none">
+                <div class="card shadow-sm">
+                    <img src="./img/개선.PNG" class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <span class="card-text">상품이름</span>
+                        <div class="d-flex justify-content-between">
+                            <span>860,000원</span>
+                            <div>
+                                <i class="fa-regular fa-heart me-1"></i><span>3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a href="/product/productDetail" class="col link-dark text-decoration-none">
+                <div class="card shadow-sm">
+                    <img src="./img/개선.PNG" class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <span class="card-text">상품이름</span>
+                        <div class="d-flex justify-content-between">
+                            <span>860,000원</span>
+                            <div>
+                                <i class="fa-regular fa-heart me-1"></i><span>3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <a href="/product/productDetail" class="col link-dark text-decoration-none">
-            <div class="card shadow-sm">
-                <img src="./img/개선.PNG" class="card-img-top" alt="..." />
-                <div class="card-body">
-                    <span class="card-text">상품이름</span>
-                    <div class="d-flex justify-content-between">
-                        <span>860,000원</span>
-                        <div>
-                            <i class="fa-regular fa-heart me-1"></i><span>3</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="/product/productDetail" class="col link-dark text-decoration-none">
-            <div class="card shadow-sm">
-                <img src="./img/개선.PNG" class="card-img-top" alt="..." />
-                <div class="card-body">
-                    <span class="card-text">상품이름</span>
-                    <div class="d-flex justify-content-between">
-                        <span>860,000원</span>
-                        <div>
-                            <i class="fa-regular fa-heart me-1"></i><span>3</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="/product/productDetail" class="col link-dark text-decoration-none">
-            <div class="card shadow-sm">
-                <img src="./img/개선.PNG" class="card-img-top" alt="..." />
-                <div class="card-body">
-                    <span class="card-text">상품이름</span>
-                    <div class="d-flex justify-content-between">
-                        <span>860,000원</span>
-                        <div>
-                            <i class="fa-regular fa-heart me-1"></i><span>3</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="/product/productDetail" class="col link-dark text-decoration-none">
-            <div class="card shadow-sm">
-                <img src="./img/개선.PNG" class="card-img-top" alt="..." />
-                <div class="card-body">
-                    <span class="card-text">상품이름</span>
-                    <div class="d-flex justify-content-between">
-                        <span>860,000원</span>
-                        <div>
-                            <i class="fa-regular fa-heart me-1"></i><span>3</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="/product/productDetail" class="col link-dark text-decoration-none">
-            <div class="card shadow-sm">
-                <img src="./img/개선.PNG" class="card-img-top" alt="..." />
-                <div class="card-body">
-                    <span class="card-text">상품이름</span>
-                    <div class="d-flex justify-content-between">
-                        <span>860,000원</span>
-                        <div>
-                            <i class="fa-regular fa-heart me-1"></i><span>3</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="/product/productDetail" class="col link-dark text-decoration-none">
-            <div class="card shadow-sm">
-                <img src="./img/개선.PNG" class="card-img-top" alt="..." />
-                <div class="card-body">
-                    <span class="card-text">상품이름</span>
-                    <div class="d-flex justify-content-between">
-                        <span>860,000원</span>
-                        <div>
-                            <i class="fa-regular fa-heart me-1"></i><span>3</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="/product/productDetail" class="col link-dark text-decoration-none">
-            <div class="card shadow-sm">
-                <img src="./img/개선.PNG" class="card-img-top" alt="..." />
-                <div class="card-body">
-                    <span class="card-text">상품이름</span>
-                    <div class="d-flex justify-content-between">
-                        <span>860,000원</span>
-                        <div>
-                            <i class="fa-regular fa-heart me-1"></i><span>3</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="/product/productDetail" class="col link-dark text-decoration-none">
-            <div class="card shadow-sm">
-                <img src="./img/개선.PNG" class="card-img-top" alt="..." />
-                <div class="card-body">
-                    <span class="card-text">상품이름</span>
-                    <div class="d-flex justify-content-between">
-                        <span>860,000원</span>
-                        <div>
-                            <i class="fa-regular fa-heart me-1"></i><span>3</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="/product/productDetail" class="col link-dark text-decoration-none">
-            <div class="card shadow-sm">
-                <img src="./img/개선.PNG" class="card-img-top" alt="..." />
-                <div class="card-body">
-                    <span class="card-text">상품이름</span>
-                    <div class="d-flex justify-content-between">
-                        <span>860,000원</span>
-                        <div>
-                            <i class="fa-regular fa-heart me-1"></i><span>3</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    </div>
-</div>
-<footer th:replace="layouts/footer"></footer>
+    <footer th:replace="layouts/footer"></footer>
 </body>
 </html>

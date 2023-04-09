@@ -1,0 +1,30 @@
+.chat-container {
+    width: 800px;
+    border: 1px solid grey;
+    border-radius: 14px;
+}
+
+.chat-message {
+    width: 408px;
+}
+
+.chat-send-input {
+    width: 750px;
+}
+
+.chat-date {
+    position: relative;
+    top: 13px;
+    font-size: 12px;
+}
+
+.chat-send-btn {
+    border: none;
+    background: none;
+}
+
+.my-chat-date {
+    position: relative;
+    top: 23px;
+    font-size: 12px;
+}

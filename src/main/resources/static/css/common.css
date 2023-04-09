@@ -51,43 +51,13 @@ textarea {
     cursor : pointer;
 }
 
-.alarm-count {
-    width: 35px;
-}
-
 .chat-count {
     bottom : 10px;
     left : 35px;
 }
 
-.chat-container {
-    overflow: auto;
-    height: 400px;
-}
-
-.chat-message {
-    width: 408px;
-}
-
-.chat-message-form {
-    width: 440px;
-}
-
-.chat-date {
-    position: relative;
-    top: 13px;
-    font-size: 12px;
-}
-
-.chat-send-btn {
-    border: none;
-    background: none;
-}
-
-.my-chat-date {
-    position: relative;
-    top: 23px;
-    font-size: 12px;
+.alarm-count {
+    width: 35px;
 }
 
 .place-name {
