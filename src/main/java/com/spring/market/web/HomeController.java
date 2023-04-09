@@ -13,7 +13,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String index() {
-        System.out.println(userService.test());
         return "index";
     }
 

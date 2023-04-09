@@ -10,7 +10,4 @@ public class UserService {
 
     private final UserMapper userMapper;
 
-    public int test() {
-        return userMapper.testSelect();
-    }
 }
