@@ -122,3 +122,7 @@ textarea {
     right: 2px;
     z-index: 2;
 }
+
+#password, #passwordConfirm {
+    background-image: none;
+}
