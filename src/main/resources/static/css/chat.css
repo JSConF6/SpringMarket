@@ -4,8 +4,13 @@
     border-radius: 14px;
 }
 
+.chat-message-container {
+    overflow-y: scroll;
+    height: 600px;
+}
+
 .chat-message {
-    width: 408px;
+
 }
 
 .chat-send-input {

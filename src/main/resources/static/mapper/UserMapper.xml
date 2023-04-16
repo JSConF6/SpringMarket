@@ -15,4 +15,26 @@
         VALUES(#{username},#{password},#{nickname},#{phone_number},NOW(),NOW())
     </insert>
 
+    <select id="findByUsernameAndPassword" parameterType="com.spring.market.domain.user.User" resultType="com.spring.market.domain.user.User">
+        SELECT *
+        FROM user u
+        LEFT JOIN files f ON u.id = f.user_id
+        WHERE u.username = #{username}
+        AND u.password = #{password}
+        AND withdraw != 'Y'
+        AND IFNULL(type, 'U') = 'U'
+    </select>
+
+    <update id="updateById" parameterType="com.spring.market.domain.user.User">
+        UPDATE user
+        SET password = #{password}
+        WHERE id = #{id}
+    </update>
+
+    <update id="withdraw" parameterType="com.spring.market.domain.user.User">
+        UPDATE user
+        SET withdraw = 'Y'
+        WHERE id = #{id}
+    </update>
+
 </mapper>

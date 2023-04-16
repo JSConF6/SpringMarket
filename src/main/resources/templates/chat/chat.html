@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>스프링 마켓 - 채팅</title>
     <link rel="stylesheet" th:href="@{/css/chat.css}">
-    <script></script>
+    <script type="text/javascript" th:src="@{/js/chat.js}"></script>
 </head>
 <body>
 <nav th:replace="layouts/nav"></nav>
     <div class="chat-container m-auto mt-3">
         <div class="border-bottom d-flex justify-content-between align-items-center p-3">
-            <a href="/chatList" class="link-dark text-decoration-none cursor-pointer">
+            <a href="/chat/list" class="link-dark text-decoration-none cursor-pointer">
                 <i class="fa-solid fa-arrow-left fa-lg"></i>
             </a>
-            <span class="fs-5">닉네임</span>
+            <span class="fs-5" th:text="${chatDetail.nickname}">닉네임</span>
             <div class="dropdown-center">
                 <a class="dropdown-toggle link-dark cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
@@ -31,81 +31,30 @@
                 <img src="/img/개선.PNG" width="80px" height="80px" class="rounded border border-dark mt-3 mb-3 me-2"/>
             </a>
             <div class="flex-column mt-4">
-                <h3>상품 제목</h3>
-                <span>320,000원</span>
+                <h3 th:text="${chatDetail.title}">상품 제목</h3>
+                <span th:text="${#numbers.formatInteger(chatDetail.price, 3, 'COMMA') + '원'}">320,000원</span>
             </div>
         </div>
         <div class="chat-message-container">
-            <div class="ps-2 d-flex align-items-center mt-2 mb-1">
-                <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark"/>
-                <div class="rounded border ms-2 me-2 p-2 h-100 chat-message">
-                    <span>채팅메시지</span>
-                </div>
-                <span class="text-muted me-2 chat-date">13:30</span>
-            </div>
-            <div class="ps-2 d-flex align-items-center mt-2 mb-1">
-                <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark"/>
-                <div class="rounded border ms-2 me-2 p-2 h-100 chat-message">
-                    <span>채팅메시지</span>
-                </div>
-                <span class="text-muted me-2 chat-date">13:30</span>
-            </div>
-            <div class="ps-3 d-flex justify-content-end me-3 align-content-center mt-2">
-                <span class="text-muted my-chat-date">13:30</span>
-                <div class="rounded border ms-2 p-2 h-100 text-end chat-message">
-                    <span>채팅메시지</span>
-                </div>
-            </div>
-            <div class="ps-3 d-flex justify-content-end me-3 align-content-center mt-2">
-                <span class="text-muted my-chat-date">13:30</span>
-                <div class="rounded border ms-2 p-2 h-100 text-end chat-message">
-                    <span>채팅메시지</span>
-                </div>
-            </div>
-            <div class="ps-2 d-flex align-items-center mt-2 mb-1">
-                <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark"/>
-                <div class="rounded border ms-2 me-2 p-2 h-100 chat-message">
-                    <span>채팅메시지</span>
-                </div>
-                <span class="text-muted me-2 chat-date">13:30</span>
-            </div>
-            <div class="ps-3 d-flex justify-content-end me-3 align-content-center mt-2">
-                <span class="text-muted my-chat-date">13:30</span>
-                <div class="rounded border ms-2 p-2 h-100 text-end chat-message">
-                    <span>채팅메시지</span>
-                </div>
-            </div>
-            <div class="ps-2 d-flex align-items-center mt-2 mb-1">
-                <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark"/>
-                <div class="rounded border ms-2 me-2 p-2 h-100 chat-message">
-                    <span>채팅메시지</span>
-                </div>
-                <span class="text-muted me-2 chat-date">13:30</span>
-            </div>
-            <div class="ps-3 d-flex justify-content-end me-3 align-content-center mt-2">
-                <span class="text-muted my-chat-date">13:30</span>
-                <div class="rounded border ms-2 p-2 h-100 text-end chat-message">
-                    <span>채팅메시지</span>
-                </div>
-            </div>
-            <div class="ps-2 d-flex align-items-center mt-2 mb-1">
-                <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark"/>
-                <div class="rounded border ms-2 me-2 p-2 h-100 chat-message">
-                    <span>채팅메시지</span>
-                </div>
-                <span class="text-muted me-2 chat-date">13:30</span>
-            </div>
-            <div class="ps-3 d-flex justify-content-end me-3 align-content-center mt-2">
-                <span class="text-muted my-chat-date">13:30</span>
-                <div class="rounded border ms-2 p-2 h-100 text-end chat-message">
-                    <span>채팅메시지</span>
+            <div class="message-date-container" th:each="chatMessageDate : ${chatMessageList}">
+                <span class="d-flex justify-content-center mt-3 mb-3 text-muted message-date" th:text="${chatMessageDate.messageDate}">2023-04-15</span>
+                <div th:each="chatMessage : ${chatMessageDate.chatMessage}" class="d-flex chat-message-item mt-2" th:classappend="${chatMessage.senderId == session.user.id ? 'ps-3 justify-content-end me-3' : 'ps-2 align-items-center mb-1'}">
+                    <img th:if="${chatMessage.senderId != session.user.id}" src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark"/>
+                    <span th:if="${chatMessage.senderId == session.user.id}" class="text-muted my-chat-date" th:text="${chatMessage.createAt}">13:30</span>
+                    <div class="rounded border ms-2 p-2 h-100 chat-message" th:classappend="${chatMessage.senderId == session.user.id ? 'text-end' : 'me-2'}">
+                        <span th:text="${chatMessage.message}">메시지</span>
+                    </div>
+                    <span th:if="${chatMessage.senderId != session.user.id}" class="text-muted me-2 mb-3 my-chat-date" th:text="${chatMessage.createAt}">13:30</span>
                 </div>
             </div>
         </div>
+
         <div class="mt-3 mb-3 border-top">
-            <form class="d-flex mt-3">
+            <form class="d-flex mt-3" id="chatForm">
+                <input type="hidden" id="roomId" th:value="${chatDetail.roomId}">
+                <input type="hidden" id="sellerId" th:value="${chatDetail.sellerId}">
                 <input class="rounded border ms-2 p-2 h-100 chat-send-input" placeholder="메시지를 입력해주세요"/>
-                <button type="button" class="link-dark text-decoration-none ms-1 p-0 chat-send-btn">
+                <button type="submit" class="link-dark text-decoration-none ms-1 p-0 chat-send-btn">
                     <i class="fa-solid fa-paper-plane fa-xl"></i>
                 </button>
             </form>

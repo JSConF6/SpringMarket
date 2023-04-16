@@ -4,22 +4,23 @@
   <div class="container" th:fragment="myPageNav">
     <div class="border-top border-bottom mt-4 d-flex justify-content-between align-items-center">
       <div>
-        <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark mt-3 mb-3 me-3"/>
-        <span>닉네임</span>
+        <img th:if="${session.user.path != null}" th:src="${session.user.path}" width="50px" height="50px" class="rounded-circle border border-dark mt-3 mb-3 me-3"/>
+        <img th:if="${session.user.path == null}" src="/img/default.png" width="50px" height="50px" class="rounded-circle border border-dark mt-3 mb-3 me-3"/>
+        <span th:text="${session.user.nickname}">닉네임</span>
       </div>
       <div class="d-flex align-items-center">
-        <a href="/mypage/profileEdit" type="button" class="btn btn-outline-dark me-3">프로필 수정</a>
+        <a th:href="@{/mypage/profileEdit}" type="button" class="btn btn-outline-dark me-3">프로필 수정</a>
         <div class="dropdown-center">
           <a class="dropdown-toggle link-dark cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa-solid fa-gear fa-2xl"></i>
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item cursor-pointer" data-bs-toggle="modal" data-bs-target="#passwordChangeModal">비밀번호 변경</a>
+              <a class="dropdown-item cursor-pointer" data-bs-toggle="modal" data-bs-target="#passwordChangeModal" th:attr="data-user-id=${session.user.id}">비밀번호 변경</a>
             </li>
-            <li><a class="dropdown-item" th:href="@{/logout}">로그아웃</a></li>
+            <li><a class="dropdown-item" th:href="@{/auth/logout}">로그아웃</a></li>
             <li>
-              <a class="dropdown-item cursor-pointer" data-bs-toggle="modal" data-bs-target="#withdrawModal">탈퇴하기</a>
+              <a class="dropdown-item cursor-pointer" data-bs-toggle="modal" data-bs-target="#withdrawModal" th:attr="data-user-id=${session.user.id}">탈퇴하기</a>
             </li>
           </ul>
         </div>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.market.domain.product.ProductMapper">
+    <select id="findAll" resultType="com.spring.market.domain.product.Product">
+        SELECT id productId, category_id, IFNULL(place_id, 0),
+               title, content, price, read_count, order_status, create_at
+        FROM product
+    </select>
+
+    <select id="findById" parameterType ="int" resultType="com.spring.market.domain.product.Product">
+        SELECT p.id productId, u.id userId, u.nickname, p.category_id, IFNULL(place_id, 0),
+               p.title, p.content, p.price, p.read_count, p.order_status, p.create_ats
+        FROM product p
+        INNER JOIN user u ON p.user_id = u.id
+        WHERE p.id = #{productId}
+    </select>
+
+</mapper>

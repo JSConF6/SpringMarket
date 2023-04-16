@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.market.domain.alarm.AlarmMapper">
+
+    <select id="countByUserId" parameterType="int" resultType="int">
+        SELECT COUNT(*)
+        FROM alarm
+        WHERE user_id = #{userId}
+        AND read_yn != 'Y'
+    </select>
+
+    <insert id="saveAlarm" parameterType="com.spring.market.domain.alarm.Alarm" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO alarm (user_id, type, url, message, create_at)
+        VALUES (#{userId}, #{type}, #{url}, #{message}, NOW())
+    </insert>
+
+    <update id="updateReadYn" parameterType="int">
+        UPDATE alarm
+        SET read_yn = 'Y'
+        WHERE id = #{alarmId}
+    </update>
+
+</mapper>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.market.domain.chat.ChatMapper">
+    <select id="findById" parameterType="int" resultType="com.spring.market.domain.chat.ChatRoom">
+        SELECT *
+        FROM chat_room
+        WHERE id = #{id}
+    </select>
+
+    <select id="findAllById" parameterType="int" resultType="com.spring.market.domain.chat.ChatRoom">
+        SELECT cr.id, cr.product_id, pu.id productUserId, pu.nickname productUserNickname, cr.buyer_id, u.nickname orderUserNickname,
+               p.price, cr.create_at, IFNULL(cm.message, '') message
+        FROM chat_room cr
+        LEFT JOIN chat_message cm ON cr.id = cm.room_id AND cm.create_at in (SELECT max(create_at) FROM chat_message GROUP BY room_id)
+        INNER JOIN user u ON cr.buyer_id = u.id
+        LEFT JOIN files uf ON u.id = uf.user_id
+        INNER JOIN product p ON cr.product_id = p.id
+        LEFT JOIN product_images pim ON p.id = pim.product_id
+        LEFT JOIN files pf ON pim.product_image_id = pf.id
+        INNER JOIN user pu ON p.user_id = pu.id
+        WHERE buyer_id = #{userId}
+        OR pu.id = #{userId}
+        ORDER BY cr.id DESC
+    </select>
+
+    <select id="findByBuyerIdAndSellerIdAndProductId" parameterType="com.spring.market.domain.chat.ChatRoom" resultType="com.spring.market.domain.chat.ChatRoom">
+        SELECT cr.id, cr.product_id, pu.nickname productUserNickname, cr.buyer_id, u.nickname orderUserNickname,
+        p.price, cr.create_at
+        FROM chat_room cr
+        INNER JOIN user u ON cr.buyer_id = u.id
+        LEFT JOIN files uf ON u.id = uf.user_id
+        INNER JOIN product p ON cr.product_id = p.id
+        LEFT JOIN product_images pim ON p.id = pim.product_id
+        LEFT JOIN files pf ON pim.product_image_id = pf.id
+        INNER JOIN user pu ON p.user_id = pu.id
+        WHERE buyer_id = #{buyerId}
+        AND pu.id = #{productUserId}
+        AND cr.product_id = #{productId}
+    </select>
+
+    <insert id="insertChatRoom" parameterType="com.spring.market.domain.chat.ChatRoom" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO chat_room (product_id, buyer_id, create_at)
+        VALUES (#{productId}, #{buyerId}, NOW())
+    </insert>
+
+    <insert id="insertChatMessage" parameterType="com.spring.market.domain.chat.ChatMessage">
+        INSERT INTO chat_message (room_id, sender_id, message, create_at)
+        VALUES (#{roomId}, #{senderId}, #{message}, NOW())
+    </insert>
+
+    <select id="findByRoomId" parameterType="com.spring.market.domain.chat.dto.ChatDetailDto" resultType="com.spring.market.domain.chat.dto.ChatDetailDto">
+        SELECT cr.id roomId, cr.product_id, pu.id seller_id, pu.nickname seller_nickname, cr.buyer_id, u.nickname buyer_nickname, u.nickname, p.title, p.price,
+               cr.create_at
+        FROM chat_room cr
+        INNER JOIN user u ON cr.buyer_id = u.id
+        LEFT JOIN files uf ON u.id = uf.user_id
+        INNER JOIN product p ON cr.product_id = p.id
+        LEFT JOIN product_images pim ON p.id = pim.product_id
+        LEFT JOIN files pf ON pim.product_image_id = pf.id
+        INNER JOIN user pu ON p.user_id = pu.id
+        WHERE cr.id = #{roomId}
+    </select>
+
+    <select id="findAllMessageByRoomId" parameterType="int" resultType="com.spring.market.domain.chat.ChatMessage">
+        SELECT id, room_id, sender_id, message, DATE_FORMAT(create_at, '%Y-%m-%d') message_date, DATE_FORMAT(create_at, '%H:%i') create_at
+        FROM chat_message
+        WHERE room_id = #{roomId}
+        ORDER BY create_at
+    </select>
+
+    <select id="findAllMessageDateByRoomId" parameterType="int" resultType="com.spring.market.domain.chat.dto.ChatMessageDto">
+        SELECT id, DATE_FORMAT(create_at, '%Y-%m-%d') message_date
+        FROM chat_message
+        WHERE room_id = #{roomId}
+        GROUP BY message_date
+        ORDER BY create_at
+    </select>
+
+</mapper>
