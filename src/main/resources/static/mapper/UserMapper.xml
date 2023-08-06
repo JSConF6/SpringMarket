@@ -37,4 +37,10 @@
         WHERE id = #{id}
     </update>
 
+    <select id="findById" parameterType="String" resultType="com.spring.market.domain.user.dto.UserInfoDto">
+        SELECT *
+        FROM user
+        WHERE username = #{login_id}
+    </select>
+
 </mapper>

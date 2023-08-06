@@ -1,9 +1,10 @@
 package com.spring.market.web.auth;
 
 import com.spring.market.domain.user.dto.SignInDto;
+import com.spring.market.domain.user.dto.UserInfoDto;
 import com.spring.market.service.UserService;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,9 +31,11 @@ public class AuthController {
 
     @PostMapping("/join")
     public String join(HttpServletRequest request){
+        BCryptPasswordEncoder pw = new BCryptPasswordEncoder();
+
         SignInDto signInDto = new SignInDto();
         signInDto.setUsername(request.getParameter("email"));
-        signInDto.setPassword(request.getParameter("password"));
+        signInDto.setPassword(pw.encode(request.getParameter("password")));
         signInDto.setNickname(request.getParameter("nickname"));
         signInDto.setPhone_number(request.getParameter("phone"));
         System.out.println(signInDto);
@@ -51,6 +54,12 @@ public class AuthController {
         result.put("code",userService.findEmail(signInDto));
 
         return result;
+    }
+
+    @GetMapping("findById")
+    public UserInfoDto findById (@RequestBody String login_id){
+
+        return userService.findById(login_id);
     }
 
 

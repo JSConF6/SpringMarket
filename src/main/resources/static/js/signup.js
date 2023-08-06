@@ -105,11 +105,14 @@ $(document).ready(function () {
         }
     })
 
-    $("#signin").on("submit", function (e) {
+    $("#signup").on("submit", function (e) {
        if (!(emailC === true && passwordC ===true && passwordConfirmC ===true && nicknameC ===true && phoneC ===true)) {
            e.preventDefault();
            alert("필수 입력사항을 모두 입력해주세요");
+       }else{
+           alert("회원가입이 완료되었습니다.");
        }
+
     });
 })
 

@@ -4,6 +4,7 @@ import com.spring.market.domain.user.User;
 import com.spring.market.domain.user.UserMapper;
 import com.spring.market.domain.user.dto.PasswordChangeDto;
 import com.spring.market.domain.user.dto.SignInDto;
+import com.spring.market.domain.user.dto.UserInfoDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,5 +54,10 @@ public class UserService {
         userMapper.withdraw(user);
 
         return "SUCCESS";
+    }
+
+    public UserInfoDto findById(String login_id) {
+
+        return userMapper.findById(login_id);
     }
 }

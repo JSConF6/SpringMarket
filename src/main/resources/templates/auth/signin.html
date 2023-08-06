@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>스프링 마켓 - 로그인</title>
     <link>
-    <script></script>
+    <script th:src="@{/js/signin.js}"></script>
 </head>
 <body>
     <nav th:replace="layouts/nav"></nav>
     <main class="auth-form w-100 m-auto mt-5 mb-5">
-        <form>
+        <form id="signin" action="/auth/signin" method="post">
             <h1 class="h3 mb-3 fw-normal text-center">SpringMarket</h1>
 
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"/>
+                <input type="email" class="form-control" id="login_id" name="login_id" placeholder="name@example.com"/>
                 <label for="floatingInput">아이디 입력</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password"/>
+                <input type="password" class="form-control" id="member_password" name="member_password" placeholder="Password"/>
                 <a class="link-dark pw-check cursor-pointer"><i class="fa-solid fa-eye fa-xl"></i></a>
                 <label for="floatingPassword">비밀번호 입력</label>
             </div>

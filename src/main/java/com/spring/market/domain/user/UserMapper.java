@@ -1,6 +1,7 @@
 package com.spring.market.domain.user;
 
 import com.spring.market.domain.user.dto.SignInDto;
+import com.spring.market.domain.user.dto.UserInfoDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Optional;
@@ -17,4 +18,6 @@ public interface UserMapper {
     void updateById(User user);
 
     void withdraw(User user);
+
+    UserInfoDto findById(String login_id);
 }
