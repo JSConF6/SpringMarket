@@ -28,8 +28,11 @@ public class PrincipalDetailsService implements UserDetailsService {
         System.out.println(userInfoDto);
 
         LoginDto memberLoginDto = new LoginDto();
+        memberLoginDto.setId(userInfoDto.getId());
         memberLoginDto.setLogin_id(userInfoDto.getUsername());
         memberLoginDto.setMember_password(userInfoDto.getPassword());
+        memberLoginDto.setNickname(userInfoDto.getNickname());
+        memberLoginDto.setPath(userInfoDto.getPath());
         return new PrincipalDetails(memberLoginDto);
     }
 }

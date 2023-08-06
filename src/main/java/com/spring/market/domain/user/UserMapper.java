@@ -15,9 +15,11 @@ public interface UserMapper {
 
     Optional<User> findByUsernameAndPassword(User user);
 
+    Optional<User> findByUsername(String username);
+
     void updateById(User user);
 
-    void withdraw(User user);
+    void withdraw(int id);
 
     UserInfoDto findById(String login_id);
 }

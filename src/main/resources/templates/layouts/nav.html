@@ -2,9 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 <div th:fragment="nav">
-  <input type="hidden" th:value="${session.user != null}" id="isLogin" />
-  <input type="hidden" th:if="${session.user != null}" th:value="${session.user.id}" id="id" />
-  <input type="hidden" th:if="${session.user != null}" th:value="${session.user.nickname}" id="nickname" />
+  <input type="hidden" th:value="${#authentication.principal != 'anonymousUser'}" id="isLogin" />
+  <input type="hidden" th:if="${#authentication.principal != 'anonymousUser'}" th:value="${#authentication.principal.memberLoginDto.id}" id="id" />
+  <input type="hidden" th:if="${#authentication.principal != 'anonymousUser'}" th:value="${#authentication.principal.memberLoginDto.nickname}" id="nickname" />
   <div class="toast alarm-toast" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-header">
       <strong class="me-auto">알림</strong>
@@ -23,7 +23,7 @@
         </div>
 
         <div>
-          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center align-items-center mb-md-0" th:if="${session.user == null}">
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center align-items-center mb-md-0" sec:authorize="isAnonymous()">
             <li class="nav-item">
               <a th:href="@{/auth/signin}" class="nav-link text-white px-2">로그인</a>
             </li>
@@ -31,33 +31,9 @@
               <a th:href="@{/auth/signup}" class="nav-link text-white px-2">회원가입</a>
             </li>
           </ul>
-          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 align-items-center justify-content-center mb-md-0" th:if="${session.user != null}">
-            <li class="nav-item me-3">
-              <div class="dropdown-center position-relative">
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="alarmCount">0</span>
-                <a class="dropdown-toggle text-white cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="fa-regular fa-bell fa-xl"></i>
-                </a>
-                <ul class="dropdown-menu text-center">
-                  <li>
-                    <a href="/chat/1" class="dropdown-item  cursor-pointer">닉네임님에게 채팅이 왔습니다</a>
-                  </li>
-                  <li>
-                    <a href="/chat/1" class="dropdown-item cursor-pointer">닉네임님에게 채팅이 왔습니다</a>
-                  </li>
-                  <li>
-                    <a href="/chat/1" class="dropdown-item cursor-pointer">닉네임님에게 채팅이 왔습니다</a>
-                  </li>
-                  <li>
-                    <a href="/chat/1" class="dropdown-item cursor-pointer">닉네임님에게 채팅이 왔습니다</a>
-                  </li>
-                  <li>
-                    <a href="/chat/1" class="dropdown-item cursor-pointer">닉네임님에게 채팅이 왔습니다</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 align-items-center justify-content-center mb-md-0" sec:authorize="isAuthenticated()">
+            <li class="nav-item position-relative">
+              <span class="position-absolute translate-middle badge rounded-pill bg-danger" id="alarmCount">0</span>
               <a class="nav-link text-white px-2" th:href="@{/chat/list}">채팅방</a>
             </li>
             <li class="nav-item">

@@ -4,9 +4,9 @@
   <div class="container" th:fragment="myPageNav">
     <div class="border-top border-bottom mt-4 d-flex justify-content-between align-items-center">
       <div>
-        <img th:if="${session.user.path != null}" th:src="${session.user.path}" width="50px" height="50px" class="rounded-circle border border-dark mt-3 mb-3 me-3"/>
-        <img th:if="${session.user.path == null}" src="/img/default.png" width="50px" height="50px" class="rounded-circle border border-dark mt-3 mb-3 me-3"/>
-        <span th:text="${session.user.nickname}">닉네임</span>
+        <img th:if="${#authentication.principal.memberLoginDto.path != null}" th:src="${#authentication.principal.memberLoginDto.path}" width="50px" height="50px" class="rounded-circle border border-dark mt-3 mb-3 me-3"/>
+        <img th:if="${#authentication.principal.memberLoginDto.path == null}" src="/img/default.png" width="50px" height="50px" class="rounded-circle border border-dark mt-3 mb-3 me-3"/>
+        <span th:text="${#authentication.principal.memberLoginDto.nickname}">닉네임</span>
       </div>
       <div class="d-flex align-items-center">
         <a th:href="@{/mypage/profileEdit}" type="button" class="btn btn-outline-dark me-3">프로필 수정</a>
@@ -16,11 +16,11 @@
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item cursor-pointer" data-bs-toggle="modal" data-bs-target="#passwordChangeModal" th:attr="data-user-id=${session.user.id}">비밀번호 변경</a>
+              <a class="dropdown-item cursor-pointer" data-bs-toggle="modal" data-bs-target="#passwordChangeModal" th:attr="data-user-id=${#authentication.principal.memberLoginDto.id}">비밀번호 변경</a>
             </li>
             <li><a class="dropdown-item" th:href="@{/auth/logout}">로그아웃</a></li>
             <li>
-              <a class="dropdown-item cursor-pointer" data-bs-toggle="modal" data-bs-target="#withdrawModal" th:attr="data-user-id=${session.user.id}">탈퇴하기</a>
+              <a class="dropdown-item cursor-pointer" data-bs-toggle="modal" data-bs-target="#withdrawModal" th:attr="data-user-id=${#authentication.principal.memberLoginDto.id}">탈퇴하기</a>
             </li>
           </ul>
         </div>

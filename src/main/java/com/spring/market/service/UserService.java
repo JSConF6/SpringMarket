@@ -2,10 +2,12 @@ package com.spring.market.service;
 
 import com.spring.market.domain.user.User;
 import com.spring.market.domain.user.UserMapper;
+import com.spring.market.domain.user.dto.LoginDto;
 import com.spring.market.domain.user.dto.PasswordChangeDto;
 import com.spring.market.domain.user.dto.SignInDto;
 import com.spring.market.domain.user.dto.UserInfoDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserMapper userMapper;
+
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public void join(SignInDto signInDto){
         userMapper.join(signInDto);
@@ -28,30 +32,38 @@ public class UserService {
     }
 
     @Transactional
-    public String passwordUpdate(User user, PasswordChangeDto passwordChangeDto) {
-        user.setPassword(passwordChangeDto.getCurrentPassword());
-        User updateUser = userMapper.findByUsernameAndPassword(user).orElse(null);
+    public String passwordUpdate(LoginDto loginDto, PasswordChangeDto passwordChangeDto) {
+        User updateUser = userMapper.findByUsername(loginDto.getLogin_id()).orElse(null);
 
         if(updateUser == null) {
             return null;
         }
 
-        updateUser.setPassword(passwordChangeDto.getChangePassword());
+        if (!passwordEncoder.matches(passwordChangeDto.getCurrentPassword(), updateUser.getPassword())) {
+            return null;
+        }
+
+        String encPassword = passwordEncoder.encode(passwordChangeDto.getChangePassword());
+        updateUser.setPassword(encPassword);
         userMapper.updateById(updateUser);
 
         return "SUCCESS";
     }
 
     @Transactional
-    public String withdraw(User user, String currentPassword) {
-        user.setPassword(currentPassword);
-        User withdrawUser = userMapper.findByUsernameAndPassword(user).orElse(null);
+    public String withdraw(LoginDto loginDto, String currentPassword) {
+
+        User withdrawUser = userMapper.findByUsername(loginDto.getLogin_id()).orElse(null);
 
         if (withdrawUser == null) {
             return null;
         }
 
-        userMapper.withdraw(user);
+        if (!passwordEncoder.matches(currentPassword, withdrawUser.getPassword())) {
+            return null;
+        }
+
+        userMapper.withdraw(loginDto.getId());
 
         return "SUCCESS";
     }

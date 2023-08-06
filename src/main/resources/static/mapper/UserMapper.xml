@@ -25,13 +25,22 @@
         AND IFNULL(type, 'U') = 'U'
     </select>
 
+    <select id="findByUsername" parameterType="String" resultType="com.spring.market.domain.user.User">
+        SELECT *
+        FROM user u
+        LEFT JOIN files f ON u.id = f.user_id
+        WHERE u.username = #{username}
+        AND withdraw != 'Y'
+        AND IFNULL(type, 'U') = 'U'
+    </select>
+
     <update id="updateById" parameterType="com.spring.market.domain.user.User">
         UPDATE user
         SET password = #{password}
         WHERE id = #{id}
     </update>
 
-    <update id="withdraw" parameterType="com.spring.market.domain.user.User">
+    <update id="withdraw" parameterType="int">
         UPDATE user
         SET withdraw = 'Y'
         WHERE id = #{id}
@@ -39,8 +48,11 @@
 
     <select id="findById" parameterType="String" resultType="com.spring.market.domain.user.dto.UserInfoDto">
         SELECT *
-        FROM user
-        WHERE username = #{login_id}
+        FROM user u
+        LEFT JOIN files f ON u.id = f.user_id
+        WHERE u.username = #{login_id}
+        AND withdraw != 'Y'
+        AND IFNULL(type, 'U') = 'U'
     </select>
 
 </mapper>

@@ -1,5 +1,6 @@
 package com.spring.market.domain.user;
 
+import com.spring.market.domain.user.dto.LoginDto;
 import lombok.Data;
 
 @Data

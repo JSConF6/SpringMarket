@@ -21,9 +21,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Component
 public class SecurityConfig {
 
-    @Autowired
-    private UserService userService;
-
     /**
      * 비밀번호 암호화 (IoC에 등록 되있어서 빈주입 후 사용하면 된다.)
      */

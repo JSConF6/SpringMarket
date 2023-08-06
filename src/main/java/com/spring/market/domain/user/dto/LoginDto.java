@@ -13,8 +13,11 @@ import java.util.List;
 @Setter
 @ToString
 public class LoginDto {
+    private int id;
     private String login_id;
     private String member_password;
+    private String nickname;
+    private String path;
 
     private String roles = "ROLE_USER";
 

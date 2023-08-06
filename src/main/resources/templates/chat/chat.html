@@ -38,13 +38,13 @@
         <div class="chat-message-container">
             <div class="message-date-container" th:each="chatMessageDate : ${chatMessageList}">
                 <span class="d-flex justify-content-center mt-3 mb-3 text-muted message-date" th:text="${chatMessageDate.messageDate}">2023-04-15</span>
-                <div th:each="chatMessage : ${chatMessageDate.chatMessage}" class="d-flex chat-message-item mt-2" th:classappend="${chatMessage.senderId == session.user.id ? 'ps-3 justify-content-end me-3' : 'ps-2 align-items-center mb-1'}">
-                    <img th:if="${chatMessage.senderId != session.user.id}" src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark"/>
-                    <span th:if="${chatMessage.senderId == session.user.id}" class="text-muted my-chat-date" th:text="${chatMessage.createAt}">13:30</span>
-                    <div class="rounded border ms-2 p-2 h-100 chat-message" th:classappend="${chatMessage.senderId == session.user.id ? 'text-end' : 'me-2'}">
+                <div th:each="chatMessage : ${chatMessageDate.chatMessage}" class="d-flex chat-message-item mt-2" th:classappend="${chatMessage.senderId == #authentication.principal.memberLoginDto.id ? 'ps-3 justify-content-end me-3' : 'ps-2 align-items-center mb-1'}">
+                    <img th:if="${chatMessage.senderId != #authentication.principal.memberLoginDto.id}" src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark"/>
+                    <span th:if="${chatMessage.senderId == #authentication.principal.memberLoginDto.id}" class="text-muted my-chat-date" th:text="${chatMessage.createAt}">13:30</span>
+                    <div class="rounded border ms-2 p-2 h-100 chat-message" th:classappend="${chatMessage.senderId == #authentication.principal.memberLoginDto.id ? 'text-end' : 'me-2'}">
                         <span th:text="${chatMessage.message}">메시지</span>
                     </div>
-                    <span th:if="${chatMessage.senderId != session.user.id}" class="text-muted me-2 mb-3 my-chat-date" th:text="${chatMessage.createAt}">13:30</span>
+                    <span th:if="${chatMessage.senderId != #authentication.principal.memberLoginDto.id}" class="text-muted me-2 mb-3 my-chat-date" th:text="${chatMessage.createAt}">13:30</span>
                 </div>
             </div>
         </div>

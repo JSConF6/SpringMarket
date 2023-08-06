@@ -1,5 +1,6 @@
 package com.spring.market.web;
 
+import com.spring.market.config.PrincipalDetails;
 import com.spring.market.domain.chat.dto.ChatDetailDto;
 import com.spring.market.domain.chat.dto.ChatMessageDto;
 import com.spring.market.domain.user.User;
@@ -7,6 +8,7 @@ import com.spring.market.service.ChatService;
 import com.spring.market.service.ProductService;
 import com.spring.market.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,17 +41,17 @@ public class HomeController {
     }
 
     @GetMapping("/chat/list")
-    public String chatList(@SessionAttribute("user") User user, Model model) {
-        model.addAttribute("chatRoomList", chatService.getChatRoomList(user.getId()));
+    public String chatList(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
+        model.addAttribute("chatRoomList", chatService.getChatRoomList(principalDetails.getMemberLoginDto().getId()));
         return "chat/chatList";
     }
 
     @GetMapping("/chat")
-    public String chat(@SessionAttribute("user") User user,
+    public String chat(@AuthenticationPrincipal PrincipalDetails principalDetails,
                        @RequestParam("productId") int productId,
                        Model model) {
 
-        ChatDetailDto chatDetail = chatService.getChatDetail(productId, user.getId());
+        ChatDetailDto chatDetail = chatService.getChatDetail(productId, principalDetails.getMemberLoginDto().getId());
         List<ChatMessageDto> chatMessageList = chatService.getChatMessageList(chatDetail.getRoomId());
 
         model.addAttribute("chatDetail", chatDetail);
@@ -58,11 +60,11 @@ public class HomeController {
     }
 
     @GetMapping("/chat/{roomId}")
-    public String chatDetail(@SessionAttribute("user") User user,
+    public String chatDetail(@AuthenticationPrincipal PrincipalDetails principalDetails,
                              @PathVariable("roomId") int roomId,
                              Model model) {
 
-        ChatDetailDto chatDetail = chatService.getChatRoomDetail(roomId, user.getId());
+        ChatDetailDto chatDetail = chatService.getChatRoomDetail(roomId, principalDetails.getMemberLoginDto().getId());
         List<ChatMessageDto> chatMessageList = chatService.getChatMessageList(chatDetail.getRoomId());
 
         model.addAttribute("chatDetail", chatDetail);

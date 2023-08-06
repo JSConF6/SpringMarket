@@ -14,4 +14,6 @@ public class UserInfoDto {
     private String update_at;
     private String withdraw_at;
 
+    private String path;
+
 }

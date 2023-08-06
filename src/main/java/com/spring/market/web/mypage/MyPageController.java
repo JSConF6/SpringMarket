@@ -1,9 +1,11 @@
 package com.spring.market.web.mypage;
 
+import com.spring.market.config.PrincipalDetails;
 import com.spring.market.domain.user.User;
 import com.spring.market.domain.user.dto.PasswordChangeDto;
 import com.spring.market.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,9 +46,9 @@ public class MyPageController {
 
     @PostMapping("/changePassword")
     @ResponseBody
-    public String changePassword(@SessionAttribute("user") User user,
+    public String changePassword(@AuthenticationPrincipal PrincipalDetails principalDetails,
                                  @RequestBody PasswordChangeDto passwordChangeDto) {
-        String result = userService.passwordUpdate(user, passwordChangeDto);
+        String result = userService.passwordUpdate(principalDetails.getMemberLoginDto(), passwordChangeDto);
         return result;
     }
 
@@ -61,9 +63,9 @@ public class MyPageController {
 
     @PostMapping("/withdraw")
     @ResponseBody
-    public String withdraw(@SessionAttribute("user") User user,
+    public String withdraw(@AuthenticationPrincipal PrincipalDetails principalDetails,
                            @RequestParam String currentPassword) {
-        String result = userService.withdraw(user, currentPassword);
+        String result = userService.withdraw(principalDetails.getMemberLoginDto(), currentPassword);
         return result;
     }
 
