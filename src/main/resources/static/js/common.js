@@ -4,10 +4,10 @@ $(function() {
     const isLogin = $("#isLogin").val();
 
     // 로그인 시 알림 웹소켓을 연결한다.
-    if (isLogin === 'true') {
-        alarmConnectWS();
-        getAlarmCount();
-    }
+//    if (isLogin === 'true') {
+//        alarmConnectWS();
+//        getAlarmCount();
+//    }
 
     // 모달 닫기 버튼 클릭 시 해당 모달안에 있는 모든 input 초기화
     $(".modal-close").on("click", function() {

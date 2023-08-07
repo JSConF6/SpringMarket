@@ -1,12 +1,15 @@
 package com.spring.market.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.spring.market.config.PrincipalDetails;
 import com.spring.market.domain.chat.dto.ChatDto;
 import com.spring.market.domain.chat.dto.ChatRoomDto;
 import com.spring.market.domain.user.User;
+import com.spring.market.domain.user.dto.LoginDto;
 import com.spring.market.service.ChatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -75,8 +78,9 @@ public class WebSocketChatHandler extends TextWebSocketHandler {
     }
 
     private int getId(WebSocketSession session) {
-        Map<String, Object> map = session.getAttributes();
-        User user = (User) map.get("user");
-        return user.getId();
+        SecurityContextImpl o = (SecurityContextImpl) session.getAttributes().get("SPRING_SECURITY_CONTEXT");
+        PrincipalDetails principal = (PrincipalDetails) o.getAuthentication().getPrincipal();
+        LoginDto loginDto = principal.getMemberLoginDto();
+        return loginDto.getId();
     }
 }
