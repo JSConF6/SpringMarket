@@ -3,30 +3,30 @@
 <head th:replace="layouts/header :: header(~{::title}, ~{::link}, ~{::script})">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>스프링 마켓 - 비밀번호 찾기</title>
+  <title>스프링 마켓 - 비밀번호 변경</title>
   <link>
-  <script th:src="@{/js/findPw.js}"></script>
+  <script th:src="@{/js/changePw.js}"></script>
 </head>
 <body>
   <nav th:replace="layouts/nav"></nav>
   <main class="auth-form w-100 m-auto mt-5 mb-5">
-    <form id="findpw">
+    <form id="changepw">
       <h1 class="h3 mb-3 fw-normal text-center">SpringMarket</h1>
       <div class="btn-group w-100 mb-3">
         <a href="/findId" class="btn btn-outline-dark">아이디 찾기</a>
         <a href="/findPw" class="btn btn-outline-dark active">비밀번호 찾기 </a>
       </div>
       <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInputId" name="username" placeholder="name@example.com"/>
-        <label for="floatingInputId">아이디 입력</label>
+        <input type="text" class="form-control" id="floatingInputPw" name="password" placeholder="영문+숫자+특수문자 조합 8자리 이상"/>
+        <label for="floatingInputPw">비밀번호</label>
       </div>
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInputPhone" name="phone_number" placeholder="01000000000"/>
-        <label for="floatingInputPhone">전화번호 입력</label>
+        <input type="text" class="form-control" id="floatingInputPw2"  />
+        <label for="floatingInputPw2">비밀번호 확인</label>
       </div>
-      <a class="w-100 btn btn-lg btn-success cursor-pointer" data-bs-toggle="modal" data-bs-target="#userPasswordChangeModal">
-        비밀번호 찾기
-      </a>
+      <button class="w-100 btn btn-lg btn-success" type="submit">
+        비밀번호 변경
+      </button>
     </form>
   </main>
   <footer th:replace="layouts/footer"></footer>

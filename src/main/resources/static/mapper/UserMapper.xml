@@ -72,4 +72,15 @@
         WHERE id = #{id}
     </update>
 
+    <select id="findUserPw" parameterType="com.spring.market.domain.user.dto.FindPwDto" resultType="int">
+        SELECT COUNT(*)
+        FROM user
+        WHERE phone_number = #{phone_number}
+        AND username = #{username}
+    </select>
+
+    <update id="changePw" parameterType="com.spring.market.domain.user.dto.ChangePwDto">
+        UPDATE user SET password = #{password} WHERE username = #{username}
+    </update>
+
 </mapper>

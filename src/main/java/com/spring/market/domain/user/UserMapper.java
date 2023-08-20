@@ -1,5 +1,7 @@
 package com.spring.market.domain.user;
 
+import com.spring.market.domain.user.dto.ChangePwDto;
+import com.spring.market.domain.user.dto.FindPwDto;
 import com.spring.market.domain.user.dto.ProfileEditDto;
 import com.spring.market.domain.user.dto.SignInDto;
 import com.spring.market.domain.user.dto.UserInfoDto;
@@ -25,6 +27,10 @@ public interface UserMapper {
     Optional<UserInfoDto> findById(String login_id);
 
     String findUserEmail(String phone_number);
+
+    int findUserPw(FindPwDto findPwDto);
+
+    void changePw(ChangePwDto changePwDto);
 
     void updateProfileById(ProfileEditDto profileEditDto);
 }

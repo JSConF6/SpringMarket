@@ -85,6 +85,19 @@ public class UserService {
 
     }
 
+    public int findUserPw(FindPwDto findPwDto) {
+        int count = userMapper.findUserPw(findPwDto);
+        return count;
+    }
+
+    public void changePw(ChangePwDto changePwDto) {
+        System.out.println("changePw START");
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        changePwDto.setPassword(bCryptPasswordEncoder.encode(changePwDto.getPassword()));
+        userMapper.changePw(changePwDto);
+        System.out.println("changePw END");
+    }
+
     @Transactional(readOnly = true)
     public UserInfoDto getUserInfo(LoginDto member) {
         UserInfoDto userInfo = userMapper.findById(member.getLogin_id()).orElseThrow(

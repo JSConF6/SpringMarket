@@ -7,7 +7,7 @@ var phoneC = false;
 $(document).ready(function () {
 
 
-    $("#email").on("focusout",function () {
+    $("#email").on("keyup",function () {
         var email = $(this);
         console.log(email.val())
 
@@ -47,7 +47,7 @@ $(document).ready(function () {
             emailC = false;
         }
     })
-    $("#password").on("focusout",function () {
+    $("#password").on("keyup",function () {
         var password = $(this);
 
         const regExp =  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()_+|{}<>?])[A-Za-z\d~!@#$%^&*()_+|{}<>?]{8,16}$/;
@@ -63,7 +63,7 @@ $(document).ready(function () {
             passwordC = false;
         }
     })
-    $("#passwordConfirm").on("focusout",function () {
+    $("#passwordConfirm").on("keyup",function () {
         var passwordConfirm = $(this);
         console.log(passwordConfirm)
         if(passwordConfirm.val() === $("#password").val()){
@@ -76,7 +76,7 @@ $(document).ready(function () {
             passwordConfirmC = false;
         }
     })
-    $("#nickname").on("focusout",function () {
+    $("#nickname").on("keyup",function () {
         var nickname = $(this);
         console.log(nickname)
         const regExp = /^[가-힣a-zA-Z]{2,}$/;
@@ -90,7 +90,7 @@ $(document).ready(function () {
             nicknameC = false;
         }
     })
-    $("#phone").on("focusout",function () {
+    $("#phone").on("keyup",function () {
         var phone = $(this);
         console.log(phone)
         const regExp = /^01([0|1|6|7|8|9])(\d{3}|\d{4})\d{4}$/;

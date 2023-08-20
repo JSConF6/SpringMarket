@@ -1,7 +1,21 @@
 var phone_number = false;
+var username = false;
 
 $(document).ready(function () {
 
+    $("#floatingInputId").on("keyup",function () {
+        var email = $(this);
+
+        if(email === ""){
+            username = false;
+            email.addClass("is-invalid");
+            email.removeClass("is-valid");
+        }else{
+            username = true;
+            email.addClass("is-valid");
+            email.removeClass("is-invalid");
+        }
+    })
 
     $("#floatingInputPhone").on("keyup",function () {
         var phone = $(this);
@@ -18,21 +32,24 @@ $(document).ready(function () {
     })
 
 
-    $("#findid").on("submit", function (e) {
-       if (!(phone_number === true )) {
+    $("#findpw").on("submit", function (e) {
+       if (!(phone_number === true && username === true)) {
            e.preventDefault();
-           alert("전화번호를 입력해주세요");
+           alert("필수사항을 입력해주세요");
        }else{
            const formData = new FormData(event.target);
                const userPhone = formData.get('phone_number');
+               const userName = formData.get('username');
                console.log(userPhone)
                // API 호출
-               fetch(`/auth/findUserEmail?phone_number=${userPhone}`)
+               fetch(`/auth/findUserPw?phone_number=${userPhone}&username=${userName}`)
                    .then(response => response.json())
                    .then(data => {
                        // API 응답 데이터 처리
                        if (data.code === "200") {
-                           alert(`사용자 이메일: ${data.username}`);
+                           if(confirm("비밀번호를 변경 하시겠습니까?")){
+                               location.href=`/auth/changePw?username=${userName}`
+                           }
                        } else {
                            alert('사용자를 찾을 수 없습니다.');
                        }
