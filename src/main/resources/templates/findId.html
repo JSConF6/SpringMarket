@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>스프링 마켓 - 아이디 찾기</title>
   <link>
-  <script></script>
+  <script th:src="@{/js/findId.js}"></script>
 </head>
 <body>
   <nav th:replace="layouts/nav"></nav>
   <main class="auth-form w-100 m-auto mt-5 mb-5">
-    <form>
+    <form id = "findid" >
       <h1 class="h3 mb-3 fw-normal text-center">SpringMarket</h1>
       <div class="btn-group w-100 mb-3">
         <a href="/findId" class="btn btn-outline-dark active">아이디 찾기</a>
         <a href="/findPw" class="btn btn-outline-dark">비밀번호 찾기 </a>
       </div>
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInputPhone" placeholder="01000000000"/>
-        <label for="floatingInputPhone">전화번호 입력</label>
+        <input type="text" class="form-control" id="floatingInputPhone" name="phone_number" placeholder="01000000000"/>
+        <label for="floatingInputPhone">전화번호 입력 "-" 를 뺴고 입력해주세요</label>
       </div>
       <button class="w-100 btn btn-lg btn-success" type="submit">
         아이디 찾기

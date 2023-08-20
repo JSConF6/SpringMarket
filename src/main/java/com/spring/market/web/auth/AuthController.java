@@ -62,5 +62,23 @@ public class AuthController {
         return userService.findById(login_id);
     }
 
+    @GetMapping("/findUserEmail")
+    @ResponseBody
+    public Map<String,String> findUserEmail (@RequestParam(name = "phone_number") String phone_number){
+        System.out.println(phone_number);
+
+        Map<String,String> result = new HashMap<>();
+        String username = userService.findUserEmail(phone_number);
+        if(username == null){
+            result.put("code","400");
+            result.put("username",username);
+        }else{
+            result.put("code","200");
+            result.put("username",username);
+        }
+
+        return result;
+    }
+
 
 }

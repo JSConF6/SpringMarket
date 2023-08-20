@@ -72,4 +72,15 @@ public class UserService {
 
         return userMapper.findById(login_id);
     }
+
+    public String findUserEmail(String phone_number) {
+        String username = userMapper.findUserEmail(phone_number);
+        if(username == null || username.equals("")){
+            return null;
+        }else{
+            return username;
+        }
+
+
+    }
 }

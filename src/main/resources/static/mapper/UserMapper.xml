@@ -55,4 +55,12 @@
         AND IFNULL(type, 'U') = 'U'
     </select>
 
+    <select id="findUserEmail" parameterType="String" resultType="String">
+        SELECT CONCAT(
+        LEFT(username, 3),
+        '****') AS username
+        FROM user
+        WHERE phone_number = #{phone_number}
+    </select>
+
 </mapper>
