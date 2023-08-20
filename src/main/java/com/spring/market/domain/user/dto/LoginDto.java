@@ -21,6 +21,14 @@ public class LoginDto {
 
     private String roles = "ROLE_USER";
 
+    public LoginDto(UserInfoDto userInfo) {
+        this.id = userInfo.getId();
+        this.login_id = userInfo.getUsername();
+        this.member_password = userInfo.getPassword();
+        this.nickname = userInfo.getNickname();
+        this.path = userInfo.getPath();
+    }
+
     @JsonIgnore
     public List<String> getRoleList(){
         if(this.roles.length()>0){

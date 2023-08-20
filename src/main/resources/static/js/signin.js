@@ -4,7 +4,7 @@ var passwordC = false;
 $(document).ready(function () {
 
 
-    $("#login_id").on("focusout",function () {
+    $("#login_id").on("keyup",function () {
         var email = $(this);
         console.log(email.val())
 
@@ -21,11 +21,10 @@ $(document).ready(function () {
             emailC = false;
         }
     })
-    $("#member_password").on("focusout",function () {
+    $("#member_password").on("keyup",function () {
         var password = $(this);
 
-
-        if(password.val() !== null || password.val() !== ""){
+        if(password.val() !== null && password.val() !== ""){
             password.addClass("is-valid");
             password.removeClass("is-invalid");
             passwordC = true;

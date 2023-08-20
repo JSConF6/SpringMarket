@@ -69,8 +69,10 @@ public class UserService {
     }
 
     public UserInfoDto findById(String login_id) {
-
-        return userMapper.findById(login_id);
+        UserInfoDto userInfo = userMapper.findById(login_id).orElseThrow(
+                () -> new RuntimeException("아이디 찾기 실패")
+        );
+        return userInfo;
     }
 
     public String findUserEmail(String phone_number) {

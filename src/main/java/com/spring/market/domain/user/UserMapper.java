@@ -21,7 +21,7 @@ public interface UserMapper {
 
     void withdraw(int id);
 
-    UserInfoDto findById(String login_id);
+    Optional<UserInfoDto> findById(String login_id);
 
     String findUserEmail(String phone_number);
 }

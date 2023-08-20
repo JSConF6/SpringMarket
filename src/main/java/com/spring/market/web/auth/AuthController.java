@@ -6,6 +6,7 @@ import com.spring.market.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,11 @@ public class AuthController {
     private UserService userService;
 
     @GetMapping("/signin")
-    public String signin() {
+    public String signin(@RequestParam(name = "error", required = false) String error,
+                         @RequestParam(name = "exception", required = false) String exception,
+                         Model model) {
+        model.addAttribute("error", error);
+        model.addAttribute("exception", exception);
         return "auth/signin";
     }
 

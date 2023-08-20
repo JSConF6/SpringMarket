@@ -131,3 +131,11 @@ textarea {
 #password, #passwordConfirm {
     background-image: none;
 }
+
+#member_password.is-valid, .was-validated #member_password:valid {
+    background-image: none;
+}
+
+#member_password.is-invalid, .was-validated #member_password:invalid {
+    background-image: none;
+}
