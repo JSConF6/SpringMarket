@@ -1,27 +1,23 @@
 package com.spring.market.config;
 
-import com.spring.market.handler.WebSocketAlarmHandler;
-import com.spring.market.handler.WebSocketChatHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.socket.config.annotation.EnableWebSocket;
-import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
-import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
-import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
+import org.springframework.messaging.simp.config.MessageBrokerRegistry;
+import org.springframework.web.socket.config.annotation.*;
 
-@RequiredArgsConstructor
 @Configuration
-@EnableWebSocket // 웹소켓 활성화
-public class WebSocketConfig implements WebSocketConfigurer {
-    private final WebSocketAlarmHandler webSocketAlarmHandler;
-    private final WebSocketChatHandler webSocketChatHandler;
+@RequiredArgsConstructor
+@EnableWebSocketMessageBroker
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
-    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(webSocketAlarmHandler, "ws/alarm").setAllowedOrigins("*")
-        .addInterceptors(new HttpSessionHandshakeInterceptor());
+    public void registerStompEndpoints(StompEndpointRegistry registry) {
+            registry.addEndpoint("/ws/chat").setAllowedOriginPatterns("*").withSockJS();
+    }
 
-        registry.addHandler(webSocketChatHandler, "ws/chat/**").setAllowedOrigins("*")
-                .addInterceptors(new HttpSessionHandshakeInterceptor());
+    @Override
+    public void configureMessageBroker(MessageBrokerRegistry config) {
+        config.enableSimpleBroker("/queue", "/topic"); // 발행자가 /topic의 경로로 메시지를 주면 구독자에게 전달
+        config.setApplicationDestinationPrefixes("/app"); // 발행자가 /app의 경로로 메시지를 주면 가공을 해서 구독자 들에게 전달
     }
 }

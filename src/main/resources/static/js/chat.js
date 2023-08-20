@@ -1,27 +1,33 @@
+var stompClient = null;
+
 $(function() {
     const nickname = $("#nickname").val();
     const roomId = $("#roomId").val();
+    const currentUserId = $("#currentUserId").val();
 
-    const chatSocket = new WebSocket(`ws://localhost:8080/ws/chat/${roomId}`);
+    const sock = new SockJS("http://localhost:8080/ws/chat");
+    stompClient = Stomp.over(sock);
+    stompClient.connect({}, function(frame) {
+        console.log("StompClient Connected : ", frame);
+        stompClient.subscribe(`/topic/chat/room/${roomId}`, function(message) {
+            const msgSplit = message.body.split("/");
+            const senderId = msgSplit[0];
+            const msg = msgSplit[1];
 
-    chatSocket.onopen = function() {}
+            if (senderId !== currentUserId) {
+                const lastMessageDateContainer = getLastMessageDateContainer();
+                const lastMessageDate = $(lastMessageDateContainer).text();
 
-    chatSocket.onclose = function (e) {}
+                if (lastMessageDate === getCurrentDate()) {
+                    $(lastMessageDateContainer).parent().append(otherMessageItem(msg ,getCurrentTime()));
+                } else {
+                    $(".chat-message-container").append(OtherMessageDateItem(msg, getCurrentDate(), getCurrentTime()));
+                }
 
-    chatSocket.onmessage = async function (message) {
-        const msg = message.data;
-
-        const lastMessageDateContainer = getLastMessageDateContainer();
-        const lastMessageDate = $(lastMessageDateContainer).text();
-
-        if (lastMessageDate === getCurrentDate()) {
-            $(lastMessageDateContainer).parent().append(otherMessageItem(msg ,getCurrentTime()));
-        } else {
-            $(".chat-message-container").append(OtherMessageDateItem(msg, getCurrentDate(), getCurrentTime()));
-        }
-
-        moveScroll()
-    }
+                moveScroll();
+            }
+        });
+    });
 
     // 채팅 버튼 클릭 시
     $("#chatForm").on("submit", function(e) {
@@ -40,28 +46,17 @@ $(function() {
 
         const data = {
             roomId : roomId,
+            senderId : currentUserId,
             message : message,
         };
 
-        chatSocket.send(JSON.stringify(data));
+        stompClient.send("/app/chat/message", {}, JSON.stringify(data));
 
         // message container 안에 메시지 추가
         if (lastMessageDate === getCurrentDate()) {
             $(lastMessageDateContainer).parent().append(messageItem(message, getCurrentTime()));
         } else {
             $(".chat-message-container").append(messageDateItem(message, getCurrentDate(), getCurrentTime()));
-        }
-
-        const msgDateItemLength = $(".chat-message-container .chat-message").length;
-
-        if (msgDateItemLength === 1) {
-            const alarmData = {
-                roomId : roomId,
-                sellerId : sellerId,
-                message : `${nickname}님이 채팅을 보냈습니다.`
-            };
-
-            alarmSocket.send(JSON.stringify(alarmData));
         }
 
         // 메시지 입력하면 스크롤 맨아래로 옮기기
@@ -73,6 +68,13 @@ $(function() {
 
     moveScroll();
 });
+
+function disconnect() {
+    if (stompClient !== null) {
+        stompClient.disconnect();
+    }
+    console.log("StompClient Disconnected");
+}
 
 function messageItem(message, time) {
     const item =

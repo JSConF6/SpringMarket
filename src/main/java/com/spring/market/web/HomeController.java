@@ -22,9 +22,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HomeController {
 
-    private final UserService userService;
-    private final ChatService chatService;
-
     @GetMapping("/")
     public String index() {
         return "index";
@@ -38,37 +35,5 @@ public class HomeController {
     @GetMapping("/findPw")
     public String findPw() {
         return "findPw";
-    }
-
-    @GetMapping("/chat/list")
-    public String chatList(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
-        model.addAttribute("chatRoomList", chatService.getChatRoomList(principalDetails.getMemberLoginDto().getId()));
-        return "chat/chatList";
-    }
-
-    @GetMapping("/chat")
-    public String chat(@AuthenticationPrincipal PrincipalDetails principalDetails,
-                       @RequestParam("productId") int productId,
-                       Model model) {
-
-        ChatDetailDto chatDetail = chatService.getChatDetail(productId, principalDetails.getMemberLoginDto().getId());
-        List<ChatMessageDto> chatMessageList = chatService.getChatMessageList(chatDetail.getRoomId());
-
-        model.addAttribute("chatDetail", chatDetail);
-        model.addAttribute("chatMessageList", chatMessageList);
-        return "chat/chat";
-    }
-
-    @GetMapping("/chat/{roomId}")
-    public String chatDetail(@AuthenticationPrincipal PrincipalDetails principalDetails,
-                             @PathVariable("roomId") int roomId,
-                             Model model) {
-
-        ChatDetailDto chatDetail = chatService.getChatRoomDetail(roomId, principalDetails.getMemberLoginDto().getId());
-        List<ChatMessageDto> chatMessageList = chatService.getChatMessageList(chatDetail.getRoomId());
-
-        model.addAttribute("chatDetail", chatDetail);
-        model.addAttribute("chatMessageList", chatMessageList);
-        return "chat/chat";
     }
 }
