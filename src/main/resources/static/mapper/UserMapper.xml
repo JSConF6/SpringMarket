@@ -63,4 +63,13 @@
         WHERE phone_number = #{phone_number}
     </select>
 
+    <update id="updateProfileById" parameterType="com.spring.market.domain.user.dto.ProfileEditDto">
+        UPDATE user
+        SET nickname = #{nickname}
+        <if test="path != null and path != ''">
+            ,path = #{path}
+        </if>
+        WHERE id = #{id}
+    </update>
+
 </mapper>

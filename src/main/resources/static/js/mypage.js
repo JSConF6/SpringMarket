@@ -34,14 +34,15 @@ $(function() {
             contentType : "application/json;charset=UTF-8",
             data : JSON.stringify(data),
         }).done((res) => {
-            if (res === "SUCCESS") {
+            if (res.code === 1) {
                 alert("비밀번호가 변경 되었습니다. 다시 로그인 해주세요.");
                 location.replace("/mypage/passwordChangeSuccess");
             } else {
                 console.log(res);
             }
         }).fail((err) => {
-           console.log(err)
+            const errRes = err.responseJSON;
+            alert(errRes.msg);
         });
     });
 
@@ -64,12 +65,13 @@ $(function() {
                    currentPassword : currentPw,
                },
            }).done((res) => {
-               if (res === "SUCCESS") {
+                if (res.code === 1) {
                    alert("그동안 이용해주셔서 감사합니다.");
                    location.replace("/mypage/withdrawSuccess");
-               }
+                }
            }).fail((err) => {
-               console.log(err);
+               const errRes = err.responseJSON;
+               alert(errRes.msg);
            })
        }
     });

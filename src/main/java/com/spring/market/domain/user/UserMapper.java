@@ -1,5 +1,6 @@
 package com.spring.market.domain.user;
 
+import com.spring.market.domain.user.dto.ProfileEditDto;
 import com.spring.market.domain.user.dto.SignInDto;
 import com.spring.market.domain.user.dto.UserInfoDto;
 import org.apache.ibatis.annotations.Mapper;
@@ -24,4 +25,6 @@ public interface UserMapper {
     Optional<UserInfoDto> findById(String login_id);
 
     String findUserEmail(String phone_number);
+
+    void updateProfileById(ProfileEditDto profileEditDto);
 }
