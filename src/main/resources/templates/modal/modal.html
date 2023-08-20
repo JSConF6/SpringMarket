@@ -2,6 +2,39 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 <div th:fragment="modal">
+    <!-- userPasswordChangeModal -->
+    <div class="modal fade" id="userPasswordChangeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="userPasswordChangeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="userPasswordChangeModalLabel">
+              비밀번호 변경
+            </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="userChangePassword" placeholder="Password"/>
+              <a class="link-dark pw-check cursor-pointer">
+                <i class="fa-solid fa-eye fa-xl"></i>
+              </a>
+              <label for="userChangePassword">변경 비밀번호</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="userChangePasswordConfirm" placeholder="changePasswordConfirm"/>
+              <a class="link-dark pw-check cursor-pointer">
+                <i class="fa-solid fa-eye fa-xl"></i>
+              </a>
+              <label for="userChangePasswordConfirm">변경 비밀번호 확인</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="userPasswordChangeBtn">비밀번호 변경</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- passwordChangeModal -->
     <div class="modal fade" id="passwordChangeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="passwordChangeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
