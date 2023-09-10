@@ -51,6 +51,7 @@ $(document).ready(function () {
         }).done((res) => {
             if (res.code === 1) {
                 alert("상품이 등록되었습니다.");
+                location.href = "/mypage/mySaleList"
             } else {
                 console.log(res);
             }

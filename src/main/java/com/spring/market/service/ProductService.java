@@ -40,4 +40,8 @@ public class ProductService {
     public void productUpdate(ProductUpdateDto productUpdateDto) {
         productMapper.productUpdate(productUpdateDto);
     }
+
+    public void getProductList(int id) {
+        productMapper.getProductList(id);
+    }
 }

@@ -53,4 +53,11 @@ public class ProductController {
         productService.productUpdate(productUpdateDto);
         return new ResponseEntity<>(new ResponseDto<>(1, "상품 삭제 성공", null), HttpStatus.OK);
     }
+
+    @GetMapping("/getProductList/{id}")
+    public ResponseEntity<?> getProductList(@PathVariable int id){
+        System.out.println(id);
+        productService.getProductList(id);
+        return new ResponseEntity<>(new ResponseDto<>(1, "상품 삭제 성공", null), HttpStatus.OK);
+    }
 }
