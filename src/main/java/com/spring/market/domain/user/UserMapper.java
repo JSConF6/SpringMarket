@@ -32,5 +32,5 @@ public interface UserMapper {
 
     void changePw(ChangePwDto changePwDto);
 
-    void updateProfileById(ProfileEditDto profileEditDto);
+    int updateProfileById(ProfileEditDto profileEditDto);
 }

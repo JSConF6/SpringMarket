@@ -18,6 +18,8 @@ public class LoginDto {
     private String member_password;
     private String nickname;
     private String path;
+    private String name;
+    private String originalName;
 
     private String roles = "ROLE_USER";
 
@@ -27,6 +29,8 @@ public class LoginDto {
         this.member_password = userInfo.getPassword();
         this.nickname = userInfo.getNickname();
         this.path = userInfo.getPath();
+        this.originalName = userInfo.getOriginalName();
+        this.name = userInfo.getName();
     }
 
     @JsonIgnore

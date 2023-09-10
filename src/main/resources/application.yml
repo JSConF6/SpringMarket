@@ -22,9 +22,17 @@ spring:
   # Thymeleaf Cache 설정
   thymeleaf:
     cache: false
+  # MultiPart 설정
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 2MB
 
 # MyBatis 설정
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
   mapper-locations: classpath:/static/mapper/*.xml
+
+file:
+  path: /Users/jeongjinseop/Documents/upload/

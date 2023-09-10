@@ -17,6 +17,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -48,15 +49,14 @@ public class MyPageController {
     }
 
     @PostMapping("/profile/edit")
-    public String profileEdit(@AuthenticationPrincipal PrincipalDetails principalDetails,
-                                      ProfileEditDto profileEditDto) {
+    @ResponseBody
+    public int profileEdit(@AuthenticationPrincipal PrincipalDetails principalDetails,
+                              ProfileEditDto profileEditDto) {
         LoginDto member = principalDetails.getMemberLoginDto();
         profileEditDto.setId(member.getId());
         profileEditDto.setUsername(member.getLogin_id());
 
-        userService.updateProfile(profileEditDto);
-
-        return "redirect:/mypage/profile/edit";
+        return userService.updateProfile(profileEditDto);
     }
 
     @GetMapping("/wishList")

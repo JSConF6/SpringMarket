@@ -1,27 +1,43 @@
 package com.spring.market.service;
 
 import com.spring.market.config.PrincipalDetails;
+import com.spring.market.domain.file.File;
+import com.spring.market.domain.file.FileMapper;
+import com.spring.market.domain.file.dto.SaveFileDto;
+import com.spring.market.domain.file.dto.UpdateFileDto;
 import com.spring.market.domain.user.User;
 import com.spring.market.domain.user.UserMapper;
 import com.spring.market.domain.user.dto.*;
 import com.spring.market.handler.ex.CustomApiException;
 import com.spring.market.handler.ex.CustomException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
 
     private final UserMapper userMapper;
+    private final FileMapper fileMapper;
 
     private final BCryptPasswordEncoder passwordEncoder;
 
+    @Value("${file.path}")
+    private String uploadPath;
+
+    @Transactional
     public void join(SignInDto signInDto){
         userMapper.join(signInDto);
     }
@@ -108,8 +124,45 @@ public class UserService {
     }
 
     @Transactional
-    public void updateProfile(ProfileEditDto profile) {
-        userMapper.updateProfileById(profile);
+    public int updateProfile(ProfileEditDto profile) {
+        MultipartFile newFile = profile.getFile();
+        if (!newFile.isEmpty()) {
+            UUID uuid = UUID.randomUUID();
+
+            String originalFilename = newFile.getOriginalFilename();
+            String fileName = uuid + "_" + originalFilename;
+
+            Path filePath = Paths.get(uploadPath + fileName);
+
+            try{
+                Files.write(filePath, profile.getFile().getBytes());
+            } catch (Exception e) {
+                throw new CustomApiException("이미지 업로드 중 오류가 발생했습니다.");
+            }
+
+            profile.setPath(filePath.toString());
+            profile.setOriginalName(originalFilename);
+            profile.setName(fileName);
+
+            File currentFile = fileMapper.findByUserId(profile.getId());
+
+            if (currentFile == null) {
+                SaveFileDto saveFileDto = new SaveFileDto();
+                saveFileDto.setUserId(profile.getId());
+                saveFileDto.setOriginalName(profile.getOriginalName());
+                saveFileDto.setName(profile.getName());
+                saveFileDto.setPath(profile.getPath());
+                saveFileDto.setType("U");
+                fileMapper.save(saveFileDto);
+            } else {
+                UpdateFileDto updateFileDto = new UpdateFileDto();
+                updateFileDto.setId(currentFile.getId());
+                updateFileDto.setOriginalName(profile.getOriginalName());
+                updateFileDto.setName(profile.getName());
+                updateFileDto.setPath(profile.getPath());
+                fileMapper.updateFile(updateFileDto);
+            }
+        }
 
         UserInfoDto userInfo = userMapper.findById(profile.getUsername()).orElseThrow(
                 () -> new CustomException("유저가 존재하지 않습니다.")
@@ -123,5 +176,7 @@ public class UserService {
 
         Authentication newAuth = new UsernamePasswordAuthenticationToken(principalDetails, currAuth.getCredentials(), principalDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(newAuth);
+
+        return userMapper.updateProfileById(profile);
     }
 }

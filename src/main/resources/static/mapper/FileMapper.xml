@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.market.domain.file.FileMapper">
+    <insert id="save" parameterType="com.spring.market.domain.file.dto.SaveFileDto">
+        INSERT INTO FILES (user_id, original_name, name, path, type, create_at)
+        VALUES (#{userId}, #{originalName}, #{name}, #{path}, #{type}, NOW())
+    </insert>
+
+    <update id="updateFile" parameterType="com.spring.market.domain.file.dto.UpdateFileDto">
+        UPDATE FILES
+        SET original_name = #{originalName},
+            name = #{name},
+            path = #{path}
+        WHERE id = #{id}
+    </update>
+
+    <select id="findByUserId" parameterType="int" resultType="com.spring.market.domain.file.File">
+        SELECT *
+        FROM files
+        WHERE user_id = #{userId}
+    </select>
+</mapper>

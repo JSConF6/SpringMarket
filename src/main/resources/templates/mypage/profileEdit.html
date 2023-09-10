@@ -5,18 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>스프링 마켓 - 프로필 수정</title>
     <link rel="stylesheet" th:href="@{/css/mypage.css}">
-    <script></script>
+    <script th:src="@{/js/profileEdit.js}" ></script>
 </head>
 <body>
     <nav th:replace="layouts/nav"></nav>
     <main class="auth-form w-100 m-auto mb-5">
-        <form th:object="${userInfo}" method="POST" action="/mypage/profile/edit">
+        <form th:object="${userInfo}">
             <div class="d-flex justify-content-center">
                 <div class="ms-4">
-                    <img src="/img/개선.PNG" width="150px" height="150px" class="rounded-circle border border-dark mb-3"/>
-                    <a class="profile-img-change cursor-pointer link-dark">
-                        <i class="fa-solid fa-camera fa-xl"></i>
-                    </a>
+                    <img th:src="*{name != null} ? '/upload/' + *{name} : '/img/default.PNG'" src="/img/default.PNG" width="150px" height="150px" id="profileImg" class="rounded-circle border border-dark mb-3"/>
+                        <a class="profile-img-change cursor-pointer link-dark" id="profileImgBtn">
+                            <div class="profile-img-btn">
+                                <i class="fa-solid fa-camera fa-xl"></i>
+                            </div>
+                        </a>
+                    <input type="file" id="imgFile" name="imgFile" accept="image/*"/>
+                    <input type="hidden" id="imgPath" name="imgPath"/>
                 </div>
             </div>
 
@@ -29,7 +33,7 @@
                 <input type="text" class="form-control" id="floatingNickName" placeholder="nickname" th:field="*{nickname}"/>
                 <label for="floatingNickName">닉네임</label>
             </div>
-            <button class="w-100 btn btn-lg btn-success" type="submit">
+            <button class="w-100 btn btn-lg btn-success" type="button" id="profileEditBtn">
                 프로필 수정
             </button>
         </form>

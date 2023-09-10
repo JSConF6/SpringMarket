@@ -10,7 +10,7 @@
         FROM user
         WHERE username = #{username}
     </select>
-    <insert id="join" parameterType="com.spring.market.domain.user.dto.SignInDto">
+    <insert id="join" parameterType="com.spring.market.domain.user.dto.SignInDto" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO user(username,password,nickname,phone_number,create_at,update_at)
         VALUES(#{username},#{password},#{nickname},#{phone_number},NOW(),NOW())
     </insert>
@@ -66,9 +66,6 @@
     <update id="updateProfileById" parameterType="com.spring.market.domain.user.dto.ProfileEditDto">
         UPDATE user
         SET nickname = #{nickname}
-        <if test="path != null and path != ''">
-            ,path = #{path}
-        </if>
         WHERE id = #{id}
     </update>
 

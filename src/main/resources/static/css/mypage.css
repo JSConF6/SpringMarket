@@ -17,6 +17,19 @@
 
 .profile-img-change {
     position: relative;
-    top: 45px;
-    right: 40px;
+    bottom: 50px;
+    left: 112px;
+}
+
+.profile-img-btn {
+    border: 1px solid white;
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    background: white;
+}
+
+#imgFile {
+    display: none;
 }

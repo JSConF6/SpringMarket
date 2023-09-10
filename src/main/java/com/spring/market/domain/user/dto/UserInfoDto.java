@@ -15,5 +15,7 @@ public class UserInfoDto {
     private String withdraw_at;
 
     private String path;
+    private String originalName;
+    private String name;
 
 }
