@@ -1,6 +1,7 @@
 package com.spring.market.domain.product;
 
 import com.spring.market.domain.product.dto.ProductAddDto;
+import com.spring.market.domain.product.dto.ProductListDto;
 import com.spring.market.domain.product.dto.ProductUpdateDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -19,5 +20,5 @@ public interface ProductMapper {
 
     void productUpdate(ProductUpdateDto productUpdateDto);
 
-    void getProductList(int id);
+    List<ProductListDto> getProductList(int id);
 }

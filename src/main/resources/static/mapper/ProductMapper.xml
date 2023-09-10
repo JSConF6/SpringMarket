@@ -43,7 +43,7 @@
         #{price},0,"wait","N",NOW())
     </insert>
 
-    <select id="getProductList" parameterType="int" resultType="com.spring.market.domain.product.Product">
+    <select id="getProductList" parameterType="int" resultType="com.spring.market.domain.product.dto.ProductListDto">
         SELECT *
         FROM product
         WHERE user_id = #{id}

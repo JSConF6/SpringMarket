@@ -3,6 +3,7 @@ package com.spring.market.service;
 import com.spring.market.domain.product.Product;
 import com.spring.market.domain.product.ProductMapper;
 import com.spring.market.domain.product.dto.ProductAddDto;
+import com.spring.market.domain.product.dto.ProductListDto;
 import com.spring.market.domain.product.dto.ProductUpdateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,7 @@ public class ProductService {
         productMapper.productUpdate(productUpdateDto);
     }
 
-    public void getProductList(int id) {
-        productMapper.getProductList(id);
+    public List<ProductListDto> getProductList(int id) {
+        return productMapper.getProductList(id);
     }
 }

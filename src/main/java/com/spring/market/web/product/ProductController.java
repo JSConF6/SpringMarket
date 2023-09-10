@@ -2,6 +2,7 @@ package com.spring.market.web.product;
 
 import com.spring.market.domain.product.Product;
 import com.spring.market.domain.product.dto.ProductAddDto;
+import com.spring.market.domain.product.dto.ProductListDto;
 import com.spring.market.domain.product.dto.ProductUpdateDto;
 import com.spring.market.dto.ResponseDto;
 import com.spring.market.service.ProductService;
@@ -11,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -57,7 +60,7 @@ public class ProductController {
     @GetMapping("/getProductList/{id}")
     public ResponseEntity<?> getProductList(@PathVariable int id){
         System.out.println(id);
-        productService.getProductList(id);
-        return new ResponseEntity<>(new ResponseDto<>(1, "상품 삭제 성공", null), HttpStatus.OK);
+        List<ProductListDto> product = productService.getProductList(id);
+        return new ResponseEntity<>(new ResponseDto<>(1, "상품 삭제 성공", product), HttpStatus.OK);
     }
 }
