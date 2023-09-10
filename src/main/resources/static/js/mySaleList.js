@@ -1,7 +1,5 @@
 $(document).ready(function () {
     const id = $("#id").val();
-    console.log("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-    console.log(id);
 
     $.ajax({
         url : "/product/getProductList/" + id,
@@ -10,7 +8,6 @@ $(document).ready(function () {
         data : {id : id}
     }).done((res) => {
         if (res.code === 1) {
-            alert("리스트 호출 완료");
 
             console.log(res.data);
         }

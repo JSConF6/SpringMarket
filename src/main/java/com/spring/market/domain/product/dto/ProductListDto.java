@@ -5,13 +5,16 @@ import lombok.Data;
 @Data
 public class ProductListDto {
     private int id;
-    private int user_id;
+    private int userId;
+    private int categoryId;
+    private int placeId;
     private String name;
-    private int category_id;
-    private int place_id;
     private String content;
     private int price;
-    private int read_count;
-    private String order_status;
-    private String create_at;
+    private int readCount;
+    private String orderStatus;
+    private String delYn;
+    private String createAt;
+    private String updateAt;
+    private String deleteAt;
 }
