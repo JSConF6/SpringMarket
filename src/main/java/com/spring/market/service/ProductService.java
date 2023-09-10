@@ -2,8 +2,11 @@ package com.spring.market.service;
 
 import com.spring.market.domain.product.Product;
 import com.spring.market.domain.product.ProductMapper;
+import com.spring.market.domain.product.dto.ProductAddDto;
+import com.spring.market.domain.product.dto.ProductUpdateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,5 +21,22 @@ public class ProductService {
 
     public Product getProductDetail(int productId) {
         return productMapper.findById(productId).orElse(null);
+    }
+
+    @Transactional
+    public void productAdd(ProductAddDto productAddDto) {
+        try {
+            productMapper.productAdd(productAddDto);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void productDelete(int id) {
+        productMapper.productDelete(id);
+    }
+
+    public void productUpdate(ProductUpdateDto productUpdateDto) {
+        productMapper.productUpdate(productUpdateDto);
     }
 }

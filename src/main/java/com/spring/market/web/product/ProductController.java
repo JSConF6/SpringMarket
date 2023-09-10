@@ -1,13 +1,16 @@
 package com.spring.market.web.product;
 
 import com.spring.market.domain.product.Product;
+import com.spring.market.domain.product.dto.ProductAddDto;
+import com.spring.market.domain.product.dto.ProductUpdateDto;
+import com.spring.market.dto.ResponseDto;
 import com.spring.market.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @Controller
@@ -27,8 +30,25 @@ public class ProductController {
     }
 
     @GetMapping("/productAdd")
-    public String productAdd() {
+    public String productAddView() {
         return "product/productAdd";
     }
 
+    @PostMapping("/productAdd")
+    public ResponseEntity<?> productAdd(@ModelAttribute ProductAddDto productAddDto) {
+        productService.productAdd(productAddDto);
+        return new ResponseEntity<>(new ResponseDto<>(1, "상품 등록 성공", null), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/productDelete")
+    public ResponseEntity<?> productDelete(@RequestBody int id) {
+        productService.productDelete(id);
+        return new ResponseEntity<>(new ResponseDto<>(1, "상품 삭제 성공", null), HttpStatus.OK);
+    }
+
+    @PostMapping("/productUpdate")
+    public ResponseEntity<?> productUpdate(@ModelAttribute ProductUpdateDto productUpdateDto) {
+        productService.productUpdate(productUpdateDto);
+        return new ResponseEntity<>(new ResponseDto<>(1, "상품 삭제 성공", null), HttpStatus.OK);
+    }
 }

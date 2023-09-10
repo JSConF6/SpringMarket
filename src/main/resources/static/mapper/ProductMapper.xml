@@ -17,4 +17,30 @@
         WHERE p.id = #{productId}
     </select>
 
+    <update id="productUpdate" parameterType="com.spring.market.domain.product.dto.ProductUpdateDto">
+        UPDATE product SET
+        <if test="userId != null and userId !=''">user_id = #{userId},</if>
+        <if test="categoryId != null and categoryId !=''">category_id = #{categoryId},</if>
+        <if test="placeId != null and placeId !=''">place_id = #{placeId},</if>
+        <if test="name != null and name !=''">name = #{name},</if>
+        <if test="content != null and content !=''">content = #{content},</if>
+        <if test="price != null and price !=''">price = #{price},</if>
+        <if test="orderStatus != null and orderStatus !=''">order_status = #{orderStatus},</if>
+        <if test="delYn != null and delYn !=''">del_yn = #{delYn},</if>
+        <if test="deleteAt != null and deleteAt !=''">delete_at = #{deleteAt},</if>
+        update_at = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <delete id="productDelete" parameterType="int">
+        DELETE FROM product WHERE id = #{id}
+    </delete>
+
+    <insert id="productAdd" parameterType="com.spring.market.domain.product.dto.ProductAddDto">
+        INSERT INTO product (user_id, category_id, place_id, name,
+        content, price, read_count, order_status, del_yn, create_at)
+        VALUES(#{userId},#{categoryId},#{placeId},#{name},#{content},
+        #{price},0,"wait","N",NOW())
+    </insert>
+
 </mapper>
