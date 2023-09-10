@@ -31,11 +31,12 @@ public class ProductService {
             e.printStackTrace();
         }
     }
-
+    @Transactional
     public void productDelete(int id) {
         productMapper.productDelete(id);
     }
 
+    @Transactional
     public void productUpdate(ProductUpdateDto productUpdateDto) {
         productMapper.productUpdate(productUpdateDto);
     }

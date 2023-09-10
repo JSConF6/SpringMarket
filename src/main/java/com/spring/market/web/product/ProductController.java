@@ -35,7 +35,9 @@ public class ProductController {
     }
 
     @PostMapping("/productAdd")
+    @ResponseBody
     public ResponseEntity<?> productAdd(@ModelAttribute ProductAddDto productAddDto) {
+        System.out.println(productAddDto);
         productService.productAdd(productAddDto);
         return new ResponseEntity<>(new ResponseDto<>(1, "상품 등록 성공", null), HttpStatus.OK);
     }
@@ -47,7 +49,7 @@ public class ProductController {
     }
 
     @PostMapping("/productUpdate")
-    public ResponseEntity<?> productUpdate(@ModelAttribute ProductUpdateDto productUpdateDto) {
+    public ResponseEntity<?> productUpdate(@RequestBody ProductUpdateDto productUpdateDto) {
         productService.productUpdate(productUpdateDto);
         return new ResponseEntity<>(new ResponseDto<>(1, "상품 삭제 성공", null), HttpStatus.OK);
     }

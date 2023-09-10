@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>스프링 마켓 - 상품 등록</title>
     <link rel="stylesheet" th:href="@{/css/product.css}">
-    <script></script>
+    <script th:src="@{/js/productAdd.js}"></script>
 </head>
 <body>
     <nav th:replace="layouts/nav"></nav>
@@ -40,15 +40,19 @@
                 </div>
             </div>
             <div class="form-floating mb-3 borader-0">
-                <input type="text" class="form-control" id="title" placeholder="Title"/>
-                <label for="title">글제목</label>
+                <input type="text" class="form-control" id="category" placeholder="Category"/>
+                <label for="category">카테고리</label>
             </div>
             <div class="form-floating mb-3 borader-0">
-                <input type="text" class="form-control" id="price" placeholder="Price"/>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name"/>
+                <label for="name">글제목</label>
+            </div>
+            <div class="form-floating mb-3 borader-0">
+                <input type="text" class="form-control" id="price" name="price"  placeholder="Price"/>
                 <label for="price">가격</label>
             </div>
             <div class="form-floating mb-3">
-              <textarea class="form-control" placeholder="content" id="floatingContent"></textarea>
+              <textarea class="form-control" placeholder="content" content="content" id="floatingContent"></textarea>
                 <label for="floatingContent">게시물 내용을 작성해주세요</label>
             </div>
             <div class="border rounded d-flex justify-content-between mb-3 p-3">
@@ -59,7 +63,7 @@
                     <i class="fa-solid fa-xmark ms-1 cursor-pointer place-del-btn"></i>
                 </div>
             </div>
-            <button class="w-100 btn btn-lg btn-success" type="submit">
+            <button class="w-100 btn btn-lg btn-success" id="productAdd" type="button">
                 상품등록
             </button>
         </form>

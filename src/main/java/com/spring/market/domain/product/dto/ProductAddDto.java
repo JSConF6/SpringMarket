@@ -1,18 +1,18 @@
 package com.spring.market.domain.product.dto;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
+@ToString
 public class ProductAddDto {
-    private int productId;
     private int userId;
-    private String nickname;
     private int categoryId;
     private int placeId;
-    private String title;
+    private String name;
     private String content;
     private int price;
-    private int readCount;
-    private String orderStatus;
-    private String createAt;
 }
