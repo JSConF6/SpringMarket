@@ -132,7 +132,18 @@ public class UserService {
             String originalFilename = newFile.getOriginalFilename();
             String fileName = uuid + "_" + originalFilename;
 
-            Path filePath = Paths.get(uploadPath + fileName);
+            String userHomeDir = System.getProperty("user.home");
+
+            String folderPath = userHomeDir + java.io.File.separator + "upload" + java.io.File.separator;
+
+            java.io.File f = new java.io.File(folderPath);
+
+            if (!f.exists()) {
+                if (!f.mkdir())
+                    throw new CustomApiException("폴더 생성중 오류가 발생 했습니다.");
+            }
+
+            Path filePath = Paths.get(userHomeDir, "upload", fileName);
 
             try{
                 Files.write(filePath, profile.getFile().getBytes());
