@@ -8,9 +8,13 @@ public class ChatRoom {
     private int productId;
     private int productUserId;
     private String productUserNickname;
+    private String productUserFileName;
     private int buyerId;
     private String orderUserNickname;
-    private String nickname;
+    private String orderUserFileName;
     private String message;
     private String createAt;
+
+    private String nickname;
+    private String fileName;
 }

@@ -10,16 +10,15 @@
     </select>
 
     <select id="findAllById" parameterType="int" resultType="com.spring.market.domain.chat.ChatRoom">
-        SELECT cr.id, cr.product_id, pu.id productUserId, pu.nickname productUserNickname, cr.buyer_id, u.nickname orderUserNickname,
-               p.price, cr.create_at, IFNULL(cm.message, '') message
+        SELECT cr.id, cr.product_id, pu.id AS product_user_id, pu.nickname AS product_user_nickname, puf.name AS product_user_file_name,
+        cr.buyer_id, ou.nickname AS order_user_nickname, ouf.name AS order_user_file_name, IFNULL(cm.message, '') message, cr.create_at
         FROM chat_room cr
         LEFT JOIN chat_message cm ON cr.id = cm.room_id AND cm.create_at in (SELECT max(create_at) FROM chat_message GROUP BY room_id)
-        INNER JOIN user u ON cr.buyer_id = u.id
-        LEFT JOIN files uf ON u.id = uf.user_id
         INNER JOIN product p ON cr.product_id = p.id
-        LEFT JOIN product_images pim ON p.id = pim.product_id
-        LEFT JOIN files pf ON pim.product_image_id = pf.id
+        INNER JOIN user ou ON cr.buyer_id = ou.id
         INNER JOIN user pu ON p.user_id = pu.id
+        LEFT JOIN files puf ON pu.id = puf.user_id
+        LEFT JOIN files ouf ON ou.id = ouf.user_id
         WHERE buyer_id = #{userId}
         OR pu.id = #{userId}
         ORDER BY cr.id DESC

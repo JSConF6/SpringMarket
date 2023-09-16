@@ -14,7 +14,7 @@
         <div class="border rounded-3 ps-1 pe-1 pt-2 chat-list">
             <a th:each="chatRoom : ${chatRoomList}" th:href="@{/chat/room/{roomId}(roomId=${chatRoom.id})}" class="link-dark text-decoration-none d-flex justify-content-between border rounded-3 ps-2 mb-2 cursor-pointer">
                 <div class="d-flex align-items-center">
-                    <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border rounded-3 border-dark mt-3 mb-3 me-3"/>
+                    <img th:src="${chatRoom.fileName != null} ? '/upload/' + ${chatRoom.fileName} : '/img/default.png'" src="/img/default.png" width="50px" height="50px" class="rounded-circle border rounded-3 border-dark mt-3 mb-3 me-3"/>
                     <div class="d-flex flex-column">
                         <span th:text="${chatRoom.nickname}">닉네임</span>
                         <span th:text="${chatRoom.message}">최근 채팅 1개 보여주기</span>

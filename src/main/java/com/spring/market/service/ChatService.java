@@ -84,8 +84,10 @@ public class ChatService {
         for (ChatRoom room : roomList) {
             if (room.getProductUserId() == userId) {
                 room.setNickname(room.getOrderUserNickname());
+                room.setFileName(room.getOrderUserFileName());
             } else {
                 room.setNickname(room.getProductUserNickname());
+                room.setFileName(room.getProductUserFileName());
             }
         }
 
