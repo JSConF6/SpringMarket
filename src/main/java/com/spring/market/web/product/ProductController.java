@@ -1,6 +1,6 @@
 package com.spring.market.web.product;
 
-import com.spring.market.domain.product.Product;
+import com.spring.market.domain.product.dto.CategoryDto;
 import com.spring.market.domain.product.dto.ProductAddDto;
 import com.spring.market.domain.product.dto.ProductListDto;
 import com.spring.market.domain.product.dto.ProductUpdateDto;
@@ -39,7 +39,8 @@ public class ProductController {
 
     @PostMapping("/productAdd")
     @ResponseBody
-    public ResponseEntity<?> productAdd(@ModelAttribute ProductAddDto productAddDto) {
+    public ResponseEntity<?> productAdd(ProductAddDto productAddDto) {
+        System.out.println(productAddDto);
         productService.productAdd(productAddDto);
         return new ResponseEntity<>(new ResponseDto<>(1, "상품 등록 성공", null), HttpStatus.OK);
     }
@@ -60,5 +61,12 @@ public class ProductController {
     public ResponseEntity<?> getProductList(@PathVariable int id){
         List<ProductListDto> product = productService.getProductList(id);
         return new ResponseEntity<>(new ResponseDto<>(1, "상품 삭제 성공", product), HttpStatus.OK);
+    }
+
+    @GetMapping("/getCategory")
+    public ResponseEntity<?> getCategory(){
+        List<CategoryDto> categoryDtos = productService.getCategory();
+
+        return new ResponseEntity<>(new ResponseDto<>(1, "카테고리 리스트 조회 성공", categoryDtos), HttpStatus.OK);
     }
 }

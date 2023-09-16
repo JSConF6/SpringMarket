@@ -1,5 +1,6 @@
 package com.spring.market.domain.product;
 
+import com.spring.market.domain.product.dto.CategoryDto;
 import com.spring.market.domain.product.dto.ProductAddDto;
 import com.spring.market.domain.product.dto.ProductListDto;
 import com.spring.market.domain.product.dto.ProductUpdateDto;
@@ -21,4 +22,6 @@ public interface ProductMapper {
     void productUpdate(ProductUpdateDto productUpdateDto);
 
     List<ProductListDto> getProductList(int id);
+
+    List<CategoryDto> getCategory();
 }

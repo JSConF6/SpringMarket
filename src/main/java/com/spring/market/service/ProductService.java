@@ -2,6 +2,7 @@ package com.spring.market.service;
 
 import com.spring.market.domain.product.Product;
 import com.spring.market.domain.product.ProductMapper;
+import com.spring.market.domain.product.dto.CategoryDto;
 import com.spring.market.domain.product.dto.ProductAddDto;
 import com.spring.market.domain.product.dto.ProductListDto;
 import com.spring.market.domain.product.dto.ProductUpdateDto;
@@ -44,5 +45,10 @@ public class ProductService {
 
     public List<ProductListDto> getProductList(int id) {
         return productMapper.getProductList(id);
+    }
+
+    public List<CategoryDto> getCategory() {
+        List<CategoryDto> categoryDtos = productMapper.getCategory();
+        return categoryDtos;
     }
 }

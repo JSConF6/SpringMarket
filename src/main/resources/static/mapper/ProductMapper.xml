@@ -49,4 +49,9 @@
         WHERE user_id = #{id}
     </select>
 
+    <select id="getCategory" resultType="com.spring.market.domain.product.dto.CategoryDto">
+        SELECT *
+        FROM category
+    </select>
+
 </mapper>
