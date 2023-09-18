@@ -16,5 +16,6 @@ public class ChatRoom {
     private String createAt;
 
     private String nickname;
-    private String fileName;
+    private String userFileName;
+    private String thumbnailFileName;
 }

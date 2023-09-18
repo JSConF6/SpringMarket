@@ -5,6 +5,8 @@ import com.spring.market.domain.chat.ChatMessage;
 import com.spring.market.domain.chat.ChatRoom;
 import com.spring.market.domain.chat.dto.ChatDetailDto;
 import com.spring.market.domain.chat.dto.ChatMessageDto;
+import com.spring.market.domain.file.File;
+import com.spring.market.domain.file.FileMapper;
 import com.spring.market.domain.product.Product;
 import com.spring.market.domain.product.ProductMapper;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,7 @@ public class ChatService {
 
     private final ChatMapper chatMapper;
     private final ProductMapper productMapper;
+    private final FileMapper fileMapper;
 
     public ChatRoom getChatRoom(int roomId) {
         return chatMapper.findById(roomId).orElse(null);
@@ -82,12 +85,25 @@ public class ChatService {
         List<ChatRoom> roomList = chatMapper.findAllById(userId);
 
         for (ChatRoom room : roomList) {
+            System.out.println(room);
+            File thumbnailImageFile = fileMapper.findThumbnailByProductId(room.getProductId());
+            System.out.println(thumbnailImageFile);
+            if (thumbnailImageFile != null) {
+                room.setThumbnailFileName(thumbnailImageFile.getName());
+            }
+
             if (room.getProductUserId() == userId) {
+                File orderUserImageFile = fileMapper.findUserImageByUserId(room.getBuyerId());
                 room.setNickname(room.getOrderUserNickname());
-                room.setFileName(room.getOrderUserFileName());
+                if (orderUserImageFile != null) {
+                    room.setUserFileName(orderUserImageFile.getName());
+                }
             } else {
+                File productUserImageFile = fileMapper.findUserImageByUserId(room.getProductUserId());
                 room.setNickname(room.getProductUserNickname());
-                room.setFileName(room.getProductUserFileName());
+                if (productUserImageFile != null) {
+                    room.setUserFileName(productUserImageFile.getName());
+                }
             }
         }
 

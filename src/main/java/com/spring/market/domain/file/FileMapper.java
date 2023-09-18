@@ -11,4 +11,8 @@ public interface FileMapper {
     void updateFile(UpdateFileDto updateFileDto);
 
     File findByUserId(int userId);
+
+    File findUserImageByUserId(int userId);
+
+    File findThumbnailByProductId(int userId);
 }

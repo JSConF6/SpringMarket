@@ -21,4 +21,19 @@
         FROM files
         WHERE user_id = #{userId}
     </select>
+
+    <select id="findUserImageByUserId" parameterType="int" resultType="com.spring.market.domain.file.File">
+        SELECT *
+        FROM files
+        WHERE user_id = #{userId}
+        AND type = 'U'
+    </select>
+
+    <select id="findThumbnailByProductId" parameterType="int" resultType="com.spring.market.domain.file.File">
+        SELECT *
+        FROM product_images pis
+        INNER JOIN files f on f.id = pis.product_image_id
+        WHERE pis.product_id = #{produceId}
+        AND pis.thumbnail = 'Y'
+    </select>
 </mapper>
