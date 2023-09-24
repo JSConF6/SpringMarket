@@ -1,9 +1,6 @@
 package com.spring.market.domain.product;
 
-import com.spring.market.domain.product.dto.CategoryDto;
-import com.spring.market.domain.product.dto.ProductAddDto;
-import com.spring.market.domain.product.dto.ProductListDto;
-import com.spring.market.domain.product.dto.ProductUpdateDto;
+import com.spring.market.domain.product.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -15,7 +12,7 @@ public interface ProductMapper {
 
     Optional<Product> findById(int productId);
 
-    void productAdd(ProductAddDto productAddDto);
+    int productAdd(ProductAddDto productAddDto);
 
     void productDelete(int id);
 
@@ -24,4 +21,6 @@ public interface ProductMapper {
     List<ProductListDto> getProductList(int id);
 
     List<CategoryDto> getCategory();
+
+    void productImageAdd (ProductImageDto productImageDto);
 }

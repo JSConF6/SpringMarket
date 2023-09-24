@@ -12,6 +12,7 @@ import java.util.List;
 @Setter
 @ToString
 public class ProductAddDto {
+    private int id;
     private int userId;
     private int categoryId;
     private int placeId;

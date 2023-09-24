@@ -36,7 +36,7 @@
         DELETE FROM product WHERE id = #{id}
     </delete>
 
-    <insert id="productAdd" parameterType="com.spring.market.domain.product.dto.ProductAddDto">
+    <insert id="productAdd" parameterType="com.spring.market.domain.product.dto.ProductAddDto" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO product (user_id, category_id, place_id, name,
         content, price, read_count, order_status, del_yn, create_at)
         VALUES(#{userId},#{categoryId},#{placeId},#{name},#{content},
@@ -53,5 +53,10 @@
         SELECT *
         FROM category
     </select>
+    
+    <insert id="productImageAdd" parameterType="com.spring.market.domain.product.dto.ProductImageDto">
+        INSERT INTO product_images (product_id, product_image_id, thumbnail)
+        VALUES (#{productId},#{productImageId},#{thumbnail})
+    </insert>
 
 </mapper>

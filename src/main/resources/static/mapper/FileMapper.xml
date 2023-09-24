@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.market.domain.file.FileMapper">
-    <insert id="save" parameterType="com.spring.market.domain.file.dto.SaveFileDto">
+    <insert id="save" parameterType="com.spring.market.domain.file.dto.SaveFileDto" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO FILES (user_id, original_name, name, path, type, create_at)
         VALUES (#{userId}, #{originalName}, #{name}, #{path}, #{type}, NOW())
     </insert>

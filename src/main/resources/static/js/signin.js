@@ -36,7 +36,7 @@ $(document).ready(function () {
     })
 
     $("#signin").on("submit", function (e) {
-       if (!(emailC === true && passwordC ===true )) {
+       if (!(emailC === true && passwordC === true )) {
            e.preventDefault();
            alert("필수 입력사항을 모두 입력해주세요");
        }

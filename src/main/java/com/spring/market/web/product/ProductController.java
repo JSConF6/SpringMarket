@@ -54,7 +54,7 @@ public class ProductController {
     @PostMapping("/productUpdate")
     public ResponseEntity<?> productUpdate(@RequestBody ProductUpdateDto productUpdateDto) {
         productService.productUpdate(productUpdateDto);
-        return new ResponseEntity<>(new ResponseDto<>(1, "상품 삭제 성공", null), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseDto<>(1, "상품 수정 성공", null), HttpStatus.OK);
     }
 
     @GetMapping("/getProductList/{id}")

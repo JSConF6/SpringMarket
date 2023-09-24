@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class SaveFileDto {
+    private int id;
     private int userId;
     private String originalName;
     private String name;
