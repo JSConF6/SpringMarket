@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface ProductMapper {
     List<Product> findAll();
 
-    Optional<Product> findById(int productId);
+    Product findById(int productId);
 
     int productAdd(ProductAddDto productAddDto);
 

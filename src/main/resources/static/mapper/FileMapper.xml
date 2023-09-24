@@ -20,6 +20,7 @@
         SELECT *
         FROM files
         WHERE user_id = #{userId}
+        AND type = 'U'
     </select>
 
     <select id="findUserImageByUserId" parameterType="int" resultType="com.spring.market.domain.file.File">

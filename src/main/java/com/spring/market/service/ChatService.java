@@ -43,7 +43,7 @@ public class ChatService {
     }
 
     public ChatDetailDto getChatDetail(int productId, int buyerId) {
-        Product product = productMapper.findById(productId).orElse(null);
+        Product product = productMapper.findById(productId);
 
         ChatRoom chatRoom = new ChatRoom();
         chatRoom.setProductId(productId);
@@ -51,30 +51,38 @@ public class ChatService {
         chatRoom.setProductUserId(product.getUserId());
         ChatRoom chatRoomDto = chatMapper.findByBuyerIdAndSellerIdAndProductId(chatRoom);
 
-        ChatDetailDto chatDetail = null;
         if (chatRoomDto == null) {
-            // 채팅방 생성
             chatMapper.insertChatRoom(chatRoom);
-            chatDetail = chatMapper.findByRoomId(chatRoom.getId()).orElse(null);
-        } else {
-            chatDetail = chatMapper.findByRoomId(chatRoomDto.getId()).orElse(null);
         }
 
-        if (chatDetail.getBuyerId() == buyerId) {
-            chatDetail.setNickname(chatDetail.getSellerNickname());
-        } else {
+        ChatDetailDto chatDetail = chatMapper.findByRoomId(chatRoom.getId());
+        if (chatDetail != null) {
             chatDetail.setNickname(chatDetail.getBuyerNickname());
+
+            if (chatDetail.getBuyerId() == buyerId) {
+                chatDetail.setNickname(chatDetail.getSellerNickname());
+            }
         }
 
         return chatDetail;
     }
 
     public ChatDetailDto getChatRoomDetail(int roomId, int loginId) {
-        ChatDetailDto chatDetailDto = chatMapper.findByRoomId(roomId).orElse(null);
+        ChatDetailDto chatDetailDto = chatMapper.findByRoomId(roomId);
 
-        if (chatDetailDto.getBuyerId() == loginId) {
-            chatDetailDto.setNickname(chatDetailDto.getSellerNickname());
-        } else {
+        if (chatDetailDto != null) {
+            File thumbnailImageFile = fileMapper.findThumbnailByProductId(chatDetailDto.getProductId());
+
+            if (thumbnailImageFile != null) {
+                chatDetailDto.setThumbnailImageName(thumbnailImageFile.getName());
+            }
+
+            if (chatDetailDto.getBuyerId() == loginId) {
+                chatDetailDto.setNickname(chatDetailDto.getSellerNickname());
+
+                return chatDetailDto;
+            }
+
             chatDetailDto.setNickname(chatDetailDto.getBuyerNickname());
         }
 
@@ -85,47 +93,55 @@ public class ChatService {
         List<ChatRoom> roomList = chatMapper.findAllById(userId);
 
         for (ChatRoom room : roomList) {
-            System.out.println(room);
             File thumbnailImageFile = fileMapper.findThumbnailByProductId(room.getProductId());
-            System.out.println(thumbnailImageFile);
+
             if (thumbnailImageFile != null) {
                 room.setThumbnailFileName(thumbnailImageFile.getName());
             }
 
             if (room.getProductUserId() == userId) {
-                File orderUserImageFile = fileMapper.findUserImageByUserId(room.getBuyerId());
+                setUserImageFile(room, room.getBuyerId());
                 room.setNickname(room.getOrderUserNickname());
-                if (orderUserImageFile != null) {
-                    room.setUserFileName(orderUserImageFile.getName());
-                }
             } else {
-                File productUserImageFile = fileMapper.findUserImageByUserId(room.getProductUserId());
+                setUserImageFile(room, room.getProductUserId());
                 room.setNickname(room.getProductUserNickname());
-                if (productUserImageFile != null) {
-                    room.setUserFileName(productUserImageFile.getName());
-                }
             }
         }
 
         return roomList;
     }
 
+    private void setUserImageFile(ChatRoom room, int userId) {
+        File userImageFile = fileMapper.findUserImageByUserId(userId);
+
+        if (userImageFile != null) {
+            room.setUserFileName(userImageFile.getName());
+        }
+    }
+
     public List<ChatMessageDto> getChatMessageList(int roomId) {
-        List<ChatMessageDto> chatMessageDtoList = chatMapper.findAllMessageDateByRoomId(roomId);
+        List<ChatMessageDto> chatMessageDateList = chatMapper.findAllMessageDateByRoomId(roomId);
         List<ChatMessage> chatMessageList = chatMapper.findAllMessageByRoomId(roomId);
 
-        if (chatMessageDtoList.size() > 0) {
-            for (ChatMessageDto chatMessageDto : chatMessageDtoList) {
-                List<ChatMessage> tempList = new ArrayList<>();
-                for (ChatMessage chatMessage : chatMessageList) {
-                    if (chatMessageDto.getMessageDate().equals(chatMessage.getMessageDate())) {
-                        tempList.add(chatMessage);
+        if (!chatMessageDateList.isEmpty()) {
+            chatMessageDateList.forEach((chatMessageDate) -> {
+                List<ChatMessage> messageList = new ArrayList<>();
+                chatMessageList.forEach((chatMessage) -> {
+                    File senderImageFile = fileMapper.findUserImageByUserId(chatMessage.getSenderId());
+
+                    if (chatMessageDate.getMessageDate().equals(chatMessage.getMessageDate())) {
+                        if (senderImageFile != null) {
+                            chatMessage.setSenderImageFileName(senderImageFile.getName());
+                        }
+
+                        messageList.add(chatMessage);
                     }
-                }
-                chatMessageDto.setChatMessage(tempList);
-            }
+                });
+
+                chatMessageDate.setChatMessage(messageList);
+            });
         }
 
-        return chatMessageDtoList;
+        return chatMessageDateList;
     }
 }

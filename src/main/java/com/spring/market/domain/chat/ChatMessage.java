@@ -7,6 +7,7 @@ public class ChatMessage {
     private int id;
     private int roomId;
     private int senderId;
+    private String senderImageFileName;
     private String message;
     private String messageDate;
     private String createAt;

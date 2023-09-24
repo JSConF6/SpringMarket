@@ -12,7 +12,7 @@ public interface ChatMapper {
 
     Optional<ChatRoom> findById(int id);
 
-    Optional<ChatDetailDto> findByRoomId(int roomId);
+    ChatDetailDto findByRoomId(int roomId);
 
     void insertChatRoom(ChatRoom chatRoom);
 

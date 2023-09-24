@@ -15,4 +15,6 @@ public class ChatDetailDto {
     private int price;
     private String path;
     private String createAt;
+
+    private String thumbnailImageName;
 }

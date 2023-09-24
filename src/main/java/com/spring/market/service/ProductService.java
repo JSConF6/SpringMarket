@@ -28,7 +28,7 @@ public class ProductService {
     }
 
     public Product getProductDetail(int productId) {
-        return productMapper.findById(productId).orElse(null);
+        return productMapper.findById(productId);
     }
 
     @Transactional

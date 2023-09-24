@@ -130,7 +130,9 @@ public class UserService {
             UUID uuid = UUID.randomUUID();
 
             String originalFilename = newFile.getOriginalFilename();
-            String fileName = uuid + "_" + originalFilename;
+            String extension = originalFilename.substring(originalFilename.lastIndexOf(".") - 1);
+
+            String fileName = uuid + extension;
 
             String userHomeDir = System.getProperty("user.home");
 

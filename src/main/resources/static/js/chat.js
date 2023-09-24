@@ -13,15 +13,16 @@ $(function() {
             const msgSplit = message.body.split("/");
             const senderId = msgSplit[0];
             const msg = msgSplit[1];
+            const otherImageFileName = msgSplit[2] != null ? "/upload/" + msgSplit[2] : "";
 
             if (senderId !== currentUserId) {
                 const lastMessageDateContainer = getLastMessageDateContainer();
                 const lastMessageDate = $(lastMessageDateContainer).text();
 
                 if (lastMessageDate === getCurrentDate()) {
-                    $(lastMessageDateContainer).parent().append(otherMessageItem(msg ,getCurrentTime()));
+                    $(lastMessageDateContainer).parent().append(otherMessageItem(otherImageFileName, msg ,getCurrentTime()));
                 } else {
-                    $(".chat-message-container").append(OtherMessageDateItem(msg, getCurrentDate(), getCurrentTime()));
+                    $(".chat-message-container").append(OtherMessageDateItem(otherImageFileName, msg, getCurrentDate(), getCurrentTime()));
                 }
 
                 moveScroll();
@@ -35,7 +36,9 @@ $(function() {
 
         const sellerId = $("#sellerId").val();
 
-        const message = $(".chat-send-input").val();
+        const chatSendInput = $(".chat-send-input");
+
+        const message = $(chatSendInput).val();
 
         const lastMessageDateContainer = getLastMessageDateContainer();
         const lastMessageDate = $(lastMessageDateContainer).text();
@@ -63,7 +66,7 @@ $(function() {
         moveScroll()
 
         // 메시지 input 비우기
-        $(".chat-send-input").val("");
+        $(chatSendInput).val("");
     });
 
     moveScroll();
@@ -77,55 +80,49 @@ function disconnect() {
 }
 
 function messageItem(message, time) {
-    const item =
-        `<div class="ps-3 d-flex justify-content-end me-3 align-content-center mt-2 chat-message-item">
-            <span class="text-muted my-chat-date">${time}</span>
-            <div class="rounded border ms-2 p-2 h-100 text-end chat-message">
-                <span>${message}</span>
-            </div>
-        </div>`;
-    return item;
+    return `<div class="ps-3 d-flex justify-content-end me-3 align-content-center mt-2 chat-message-item">
+                <span class="text-muted my-chat-date">${time}</span>
+                <div class="rounded border ms-2 p-2 h-100 text-end chat-message">
+                    <span>${message}</span>
+                </div>
+            </div>`;
 }
 
-function otherMessageItem(message, time) {
-    const item =
-            `<div class="ps-2 d-flex align-items-center mt-2 mb-1 chat-message-item">
-                <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark"/>
+function messageDateItem(message, date, time) {
+    return `<div class="message-date-container">
+                <span class="d-flex justify-content-center mt-3 mb-3 text-muted message-date">${date}</span>
+                <div class="ps-3 d-flex justify-content-end me-3 align-content-center mt-2 chat-message-item">
+                    <span class="text-muted my-chat-date">${time}</span>
+                    <div class="rounded border ms-2 p-2 h-100 text-end chat-message">
+                        <span>${message}</span>
+                    </div>
+                </div>
+            </div>`;
+}
+
+function otherMessageItem(otherImageFileName, message, time) {
+    console.log(otherImageFileName)
+    return `<div class="ps-2 d-flex align-items-center mt-2 mb-1 chat-message-item">
+                <img src=${otherImageFileName !== "" ? otherImageFileName : "/img/default.PNG"} width="50px" height="50px" class="rounded-circle border border-dark"/>
                 <div class="rounded border ms-2 me-2 p-2 h-100 chat-message">
                     <span>${message}</span>
                 </div>
                 <span class="text-muted me-2 mb-3 chat-date">${time}</span>
             </div>`;
-    return item;
 }
 
-function messageDateItem(message, date, time) {
-    const item =
-                `<div class="message-date-container">
-                    <span class="d-flex justify-content-center mt-3 mb-3 text-muted message-date">${date}</span>
-                    <div class="ps-3 d-flex justify-content-end me-3 align-content-center mt-2 chat-message-item">
-                        <span class="text-muted my-chat-date">${time}</span>
-                        <div class="rounded border ms-2 p-2 h-100 text-end chat-message">
-                            <span>${message}</span>
-                        </div>
+function OtherMessageDateItem(otherImageFileName, message, date, time) {
+    console.log(otherImageFileName)
+    return `<div class="message-date-container">
+                <span class="d-flex justify-content-center mt-3 mb-3 text-muted message-date">${date}</span>
+                <div class="ps-2 d-flex align-items-center mt-2 mb-1 chat-message-item">
+                    <img src=${otherImageFileName !== "" ? otherImageFileName : "/img/default.PNG"} width="50px" height="50px" class="rounded-circle border border-dark"/>
+                    <div class="rounded border ms-2 me-2 p-2 h-100 chat-message">
+                        <span>${message}</span>
                     </div>
-                </div>`;
-    return item;
-}
-
-function OtherMessageDateItem(message, date, time) {
-    const item =
-                `<div class="message-date-container">
-                    <span class="d-flex justify-content-center mt-3 mb-3 text-muted message-date">${date}</span>
-                    <div class="ps-2 d-flex align-items-center mt-2 mb-1 chat-message-item">
-                        <img src="/img/개선.PNG" width="50px" height="50px" class="rounded-circle border border-dark"/>
-                        <div class="rounded border ms-2 me-2 p-2 h-100 chat-message">
-                            <span>${message}</span>
-                        </div>
-                        <span class="text-muted me-2 mb-3 chat-date">${time}</span>
-                    </div>
-                </div>`;
-    return item;
+                    <span class="text-muted me-2 mb-3 chat-date">${time}</span>
+                </div>
+            </div>`;
 }
 
 function getCurrentTime() {
@@ -147,12 +144,12 @@ function getCurrentDate() {
 }
 
 function moveScroll() {
-    $(".chat-message-container").scrollTop($(".chat-message-container")[0].scrollHeight);
+    const chatMessageContainer = $(".chat-message-container");
+    $(chatMessageContainer).scrollTop($(chatMessageContainer)[0].scrollHeight);
 }
 
 function getLastMessageDateContainer() {
     const messageDateList = $(".message-date-container .message-date");
-    const messageDateLength = $(".message-date-container .message-date").length;
-    const lastMessageDateContainer = $(messageDateList[messageDateLength - 1]);
-    return lastMessageDateContainer;
+    const messageDateLength = messageDateList.length;
+    return $(messageDateList[messageDateLength - 1]);
 }
