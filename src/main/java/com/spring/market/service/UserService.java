@@ -116,7 +116,15 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public UserInfoDto getUserInfo(LoginDto member) {
-        UserInfoDto userInfo = userMapper.findUserProfileById(member.getLogin_id()).orElse(null);
+        UserInfoDto userInfo = userMapper.findById(member.getLogin_id()).orElseThrow(
+                () -> new CustomApiException("알 수 없는 오류가 발생 했습니다. 관리자에게 문의해주세요.")
+        );
+
+        File userImageFile = fileMapper.findUserImageByUserId(userInfo.getId());
+
+        if (userImageFile != null) {
+            userInfo.setName(userImageFile.getName());
+        }
 
         return userInfo;
     }

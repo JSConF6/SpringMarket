@@ -29,8 +29,6 @@ public class PrincipalDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("############################################");
-        System.out.println(username);
         UserInfoDto userInfo = userMapper.findById(username).orElseThrow(
                 () -> new InternalAuthenticationServiceException("존재하지 않는 계정입니다.")
         );

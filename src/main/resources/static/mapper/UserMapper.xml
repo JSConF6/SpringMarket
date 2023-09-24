@@ -27,11 +27,9 @@
 
     <select id="findByUsername" parameterType="String" resultType="com.spring.market.domain.user.User">
         SELECT *
-        FROM user u
-        LEFT JOIN files f ON u.id = f.user_id
-        WHERE u.username = #{username}
+        FROM user
+        WHERE username = #{username}
         AND withdraw != 'Y'
-        AND IFNULL(type, 'U') = 'U'
     </select>
 
     <update id="updateById" parameterType="com.spring.market.domain.user.User">
