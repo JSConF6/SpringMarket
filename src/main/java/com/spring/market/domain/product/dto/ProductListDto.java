@@ -17,4 +17,5 @@ public class ProductListDto {
     private String createAt;
     private String updateAt;
     private String deleteAt;
+    private String filePath;
 }
