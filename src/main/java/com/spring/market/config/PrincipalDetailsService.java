@@ -1,5 +1,7 @@
 package com.spring.market.config;
 
+import com.spring.market.domain.file.File;
+import com.spring.market.domain.file.FileMapper;
 import com.spring.market.domain.user.UserMapper;
 import com.spring.market.domain.user.dto.LoginDto;
 import com.spring.market.domain.user.dto.UserInfoDto;
@@ -22,6 +24,8 @@ public class PrincipalDetailsService implements UserDetailsService {
 
     private final UserMapper userMapper;
 
+    private final FileMapper fileMapper;
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -30,6 +34,12 @@ public class PrincipalDetailsService implements UserDetailsService {
         UserInfoDto userInfo = userMapper.findById(username).orElseThrow(
                 () -> new InternalAuthenticationServiceException("존재하지 않는 계정입니다.")
         );
+
+        File userImageFile = fileMapper.findUserImageByUserId(userInfo.getId());
+
+        if (userImageFile != null) {
+            userInfo.setName(userImageFile.getName());
+        }
 
         return new PrincipalDetails(new LoginDto(userInfo));
     }

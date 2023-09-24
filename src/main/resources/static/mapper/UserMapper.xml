@@ -48,6 +48,13 @@
 
     <select id="findById" parameterType="String" resultType="com.spring.market.domain.user.dto.UserInfoDto">
         SELECT *
+        FROM user
+        WHERE username = #{login_id}
+        AND withdraw != 'Y'
+    </select>
+
+    <select id="findUserProfileById" parameterType="String" resultType="com.spring.market.domain.user.dto.UserInfoDto">
+        SELECT *
         FROM user u
         LEFT JOIN files f ON u.id = f.user_id
         WHERE u.username = #{login_id}

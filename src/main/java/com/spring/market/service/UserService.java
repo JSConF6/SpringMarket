@@ -116,9 +116,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public UserInfoDto getUserInfo(LoginDto member) {
-        UserInfoDto userInfo = userMapper.findById(member.getLogin_id()).orElseThrow(
-                () -> new CustomApiException("알 수 없는 오류가 발생 했습니다. 관리자에게 문의해주세요.")
-        );
+        UserInfoDto userInfo = userMapper.findUserProfileById(member.getLogin_id()).orElse(null);
 
         return userInfo;
     }
@@ -177,7 +175,7 @@ public class UserService {
             }
         }
 
-        UserInfoDto userInfo = userMapper.findById(profile.getUsername()).orElseThrow(
+        UserInfoDto userInfo = userMapper.findUserProfileById(profile.getUsername()).orElseThrow(
                 () -> new CustomException("유저가 존재하지 않습니다.")
         );
 
