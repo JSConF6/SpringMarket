@@ -46,7 +46,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/productDelete")
-    public ResponseEntity<?> productDelete(@RequestBody int id) {
+    public ResponseEntity<?> productDelete(int id) {
         productService.productDelete(id);
         return new ResponseEntity<>(new ResponseDto<>(1, "상품 삭제 성공", null), HttpStatus.OK);
     }
@@ -60,7 +60,7 @@ public class ProductController {
     @GetMapping("/getProductList/{id}")
     public ResponseEntity<?> getProductList(@PathVariable int id){
         List<ProductListDto> product = productService.getProductList(id);
-        return new ResponseEntity<>(new ResponseDto<>(1, "상품 삭제 성공", product), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseDto<>(1, "상품 리스트 불러오기 성공", product), HttpStatus.OK);
     }
 
     @GetMapping("/getCategory")

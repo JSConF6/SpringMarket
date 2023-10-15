@@ -14,9 +14,6 @@ $(document).ready(function () {
 
             const container = $(".container.mypage-list");
 
-            // JSON 응답에서 상품 목록을 가져옵니다.
-
-            // 각 상품에 대해 HTML을 동적으로 생성하고 페이지에 추가합니다.
             productList.forEach(product => {
                 const item = $("<div></div>")
                     .addClass("d-flex align-items-center border-bottom mypage-list-item")
@@ -30,15 +27,15 @@ $(document).ready(function () {
                                 <i class="fa-solid fa-ellipsis-vertical fa-2xl"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item cursor-pointer">거래완료</a></li>
-                                <li><a class="dropdown-item cursor-pointer">게시물 수정</a></li>
-                                <li><a class="dropdown-item cursor-pointer">삭제</a></li>
+                                <li><a class="dropdown-item cursor-pointer done" data-productId="${product.id}">거래완료</a></li>
+                                <li><a class="dropdown-item cursor-pointer modify" data-productId="${product.id}">게시물 수정</a></li>
+                                <li><a class="dropdown-item cursor-pointer delete" data-productId="${product.id}">삭제</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="d-flex justify-content-between align-items-baseline text-center">
                         <div>
-                            <span class="badge text-bg-dark fs-6 me-3">${product.status}</span>
+                            <span class="badge text-bg-dark fs-6 me-3">${product.orderStatus}</span>
                             <span class="fs-4">${product.price}원</span>
                         </div>
                         <div class="d-flex">
@@ -62,4 +59,34 @@ $(document).ready(function () {
         const errRes = err.responseJSON;
         alert(errRes.msg);
     });
+
+    $(document).on("click", ".mypage-list-item .delete", function (){
+        const productId = $(this).data("productid")
+
+        if(confirm("상품을 삭제하시겠습니까?")){
+            $.ajax({
+                url : "/product/productDelete",
+                type : "DELETE",
+                data : {id : productId}
+            }).done((res) => {
+                alert("상품이 삭제되었습니다.")
+                location.reload();
+            });
+        }
+
+
+    })
+
+    $(document).on("click", ".mypage-list-item .modify", function (){
+        const productId = $(this).data("productid")
+
+        console.log(productId);
+    })
+
+    $(document).on("click", ".mypage-list-item .done", function (){
+        const productId = $(this).data("productid")
+
+        console.log(productId);
+    })
+
 });
