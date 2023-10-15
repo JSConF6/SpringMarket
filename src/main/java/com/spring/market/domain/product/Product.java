@@ -15,4 +15,7 @@ public class Product {
     private int readCount;
     private String orderStatus;
     private String createAt;
+
+    private String thumbnailImageName;
+    private int wishCount;
 }

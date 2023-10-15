@@ -3,6 +3,7 @@ package com.spring.market.web;
 import com.spring.market.config.PrincipalDetails;
 import com.spring.market.domain.chat.dto.ChatDetailDto;
 import com.spring.market.domain.chat.dto.ChatMessageDto;
+import com.spring.market.domain.product.Product;
 import com.spring.market.domain.user.User;
 import com.spring.market.service.ChatService;
 import com.spring.market.service.ProductService;
@@ -22,8 +23,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HomeController {
 
+    private final ProductService productService;
+
     @GetMapping("/")
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("productList", productService.getMainProductList());
         return "index";
     }
 

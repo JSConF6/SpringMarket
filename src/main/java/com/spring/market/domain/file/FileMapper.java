@@ -14,5 +14,5 @@ public interface FileMapper {
 
     File findUserImageByUserId(int userId);
 
-    File findThumbnailByProductId(int userId);
+    File findThumbnailByProductId(int productId);
 }

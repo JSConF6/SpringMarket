@@ -1,10 +1,12 @@
 package com.spring.market.service;
 
+import com.spring.market.domain.file.File;
 import com.spring.market.domain.file.FileMapper;
 import com.spring.market.domain.file.dto.SaveFileDto;
 import com.spring.market.domain.product.Product;
 import com.spring.market.domain.product.ProductMapper;
 import com.spring.market.domain.product.dto.*;
+import com.spring.market.domain.wish.WishMapper;
 import com.spring.market.handler.ex.CustomApiException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ import java.util.UUID;
 @Service
 public class ProductService {
     private final ProductMapper productMapper;
+    private final WishMapper wishMapper;
     private final FileMapper fileMapper;
 
     public List<Product> getProductList() {
@@ -111,5 +114,22 @@ public class ProductService {
     public List<CategoryDto> getCategory() {
         List<CategoryDto> categoryDtos = productMapper.getCategory();
         return categoryDtos;
+    }
+
+    public List<Product> getMainProductList() {
+        List<Product> productList = productMapper.findAll();
+
+        productList.forEach((product) -> {
+            File thumbnailImageFile = fileMapper.findThumbnailByProductId(product.getProductId());
+
+            if (thumbnailImageFile != null) {
+                product.setThumbnailImageName(thumbnailImageFile.getName());
+            }
+
+            int wishCount = wishMapper.countByProductId(product.getProductId());
+            product.setWishCount(wishCount);
+        });
+
+        return productList;
     }
 }
