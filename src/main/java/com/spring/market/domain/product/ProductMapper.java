@@ -24,5 +24,5 @@ public interface ProductMapper {
 
     void productImageAdd (ProductImageDto productImageDto);
 
-    int productWishCount();
+    void sailComplete(int id);
 }

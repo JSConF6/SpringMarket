@@ -60,7 +60,7 @@
         p.del_yn,
         CONCAT("/upload/",f.name) AS file_path,
         COUNT(w.user_id) AS wish,
-        COUNT(c.order_user_id) AS chat
+        COUNT(c.buyer_id) AS chat
         FROM product p
         LEFT JOIN product_images i ON p.id = i.product_id
         LEFT JOIN files f ON i.product_image_id = f.id
@@ -85,5 +85,9 @@
         INSERT INTO product_images (product_id, product_image_id, thumbnail)
         VALUES (#{productId},#{productImageId},#{thumbnail})
     </insert>
+
+    <update id="sailComplete" parameterType="int">
+        UPDATE product SET order_status = "complete" WHERE id = #{id}
+    </update>
 
 </mapper>

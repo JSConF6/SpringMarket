@@ -96,7 +96,16 @@ $(document).ready(function () {
     $(document).on("click", ".mypage-list-item .done", function (){
         const productId = $(this).data("productid")
 
-        console.log(productId);
+        if(confirm("상품 상태를 판매 완료로 바꾸시겠습니까?")){
+            $.ajax({
+                url : "/product/sailComplete",
+                type : "POST",
+                data : {id : productId}
+            }).done((res) => {
+                alert("상품판매 완료로 변경되었습니다.")
+                location.reload();
+            });
+        }
     })
 
 });

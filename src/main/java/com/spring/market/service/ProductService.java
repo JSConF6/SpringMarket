@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -108,7 +109,14 @@ public class ProductService {
     }
 
     public List<ProductListDto> getProductList(int id) {
-        return productMapper.getProductList(id);
+        List<ProductListDto> list = productMapper.getProductList(id);
+        List<ProductListDto> productListDtos = new ArrayList<>();
+        for (int i = 0; i < list.size() ; i++) {
+            if(list.get(i).getName() != null){
+                productListDtos.add(list.get(i));
+            }
+        }
+        return productListDtos;
     }
 
     public List<CategoryDto> getCategory() {
@@ -131,5 +139,9 @@ public class ProductService {
         });
 
         return productList;
+    }
+
+    public void sailComplete(int id) {
+        productMapper.sailComplete(id);
     }
 }

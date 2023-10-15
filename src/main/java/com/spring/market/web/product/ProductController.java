@@ -69,4 +69,11 @@ public class ProductController {
 
         return new ResponseEntity<>(new ResponseDto<>(1, "카테고리 리스트 조회 성공", categoryDtos), HttpStatus.OK);
     }
+
+    @PostMapping("/sailComplete")
+    public ResponseEntity<?> sailComplete(int id){
+        productService.sailComplete(id);
+
+        return new ResponseEntity<>(new ResponseDto<>(1, "상품 상태 변경완료", null), HttpStatus.OK);
+    }
 }
