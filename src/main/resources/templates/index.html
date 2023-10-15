@@ -38,7 +38,7 @@
                 <div class="card shadow-sm" style="height : 100%;">
                     <img th:src="${product.thumbnailImageName != null} ? '/upload/' + ${product.thumbnailImageName} : '/img/개선.png'" src="./img/개선.PNG" class="card-img-top" alt="..." style="height : 75%;" />
                     <div class="card-body">
-                        <span class="card-text" th:text="${product.title}">상품이름</span>
+                        <span class="card-text" th:text="${product.name}">상품이름</span>
                         <div class="d-flex justify-content-between">
                             <span th:text="${#numbers.formatInteger(product.price, 3, 'COMMA') + '원'}">860,000원</span>
                             <div>

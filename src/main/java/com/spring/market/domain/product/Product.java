@@ -9,7 +9,7 @@ public class Product {
     private String nickname;
     private int categoryId;
     private int placeId;
-    private String title;
+    private String name;
     private String content;
     private int price;
     private int readCount;
