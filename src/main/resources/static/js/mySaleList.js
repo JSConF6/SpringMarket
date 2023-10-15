@@ -10,14 +10,21 @@ $(document).ready(function () {
         if (res.code === 1) {
 
             console.log(res.data);
+            console.log(res.data.length);
             const productList = res.data;
 
             const container = $(".container.mypage-list");
 
-            productList.forEach(product => {
+            if(res.data.length === 0) {
                 const item = $("<div></div>")
                     .addClass("d-flex align-items-center border-bottom mypage-list-item")
-                    .html(`
+                    .html(`<h2>등록된 상품이 없습니다.</h2>`);
+                container.append(item);
+            }else{
+                productList.forEach(product => {
+                    const item = $("<div></div>")
+                        .addClass("d-flex align-items-center border-bottom mypage-list-item")
+                        .html(`
                 <img src="${product.filePath}" width="150px" height="150px" class="border border-dark me-3"/>
                 <div class="flex-column">
                     <div class="d-flex justify-content-between align-items-baseline mb-4">
@@ -40,19 +47,22 @@ $(document).ready(function () {
                         </div>
                         <div class="d-flex">
                             <span class="d-flex align-items-center me-2">
-                                <i class="fa-sharp fa-regular fa-comment me-1"></i>${product.comments}
+                                <i class="fa-sharp fa-regular fa-comment me-1"></i>${product.chat}
                             </span>
                             <span class="d-flex align-items-center">
-                                <i class="fa-regular fa-heart me-1"></i>${product.likes}
+                                <i class="fa-regular fa-heart me-1"></i>${product.wish}
                             </span>
                         </div>
                     </div>
                 </div>
             `);
 
-                // 생성한 요소를 컨테이너에 추가합니다.
-                container.append(item);
-            });
+                    // 생성한 요소를 컨테이너에 추가합니다.
+                    container.append(item);
+                });
+            }
+
+
 
         }
     }).fail((err) => {

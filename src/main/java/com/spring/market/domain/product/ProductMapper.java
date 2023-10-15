@@ -23,4 +23,6 @@ public interface ProductMapper {
     List<CategoryDto> getCategory();
 
     void productImageAdd (ProductImageDto productImageDto);
+
+    int productWishCount();
 }

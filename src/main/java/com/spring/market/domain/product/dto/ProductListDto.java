@@ -18,4 +18,6 @@ public class ProductListDto {
     private String updateAt;
     private String deleteAt;
     private String filePath;
+    private int wish;
+    private int chat;
 }

@@ -58,13 +58,22 @@
         p.update_at,
         p.delete_at,
         p.del_yn,
-        CONCAT("/upload/",f.name) AS file_path
+        CONCAT("/upload/",f.name) AS file_path,
+        COUNT(w.user_id) AS wish,
+        COUNT(c.order_user_id) AS chat
         FROM product p
         LEFT JOIN product_images i ON p.id = i.product_id
         LEFT JOIN files f ON i.product_image_id = f.id
+        LEFT JOIN wish w ON p.id = w.product_id
+        LEFT JOIN chat_room c ON p.id = c.product_id
         WHERE p.user_id = #{id}
         AND i.thumbnail = "Y"
         AND p.del_yn = "N"
+
+    </select>
+
+    <select id="productWishCount" parameterType="int" resultType="int">
+        SELECT COUNT(*) FROM wish WHERE
     </select>
 
     <select id="getCategory" resultType="com.spring.market.domain.product.dto.CategoryDto">
