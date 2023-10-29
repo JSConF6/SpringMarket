@@ -144,4 +144,8 @@ public class ProductService {
     public void sailComplete(int id) {
         productMapper.sailComplete(id);
     }
+
+    public ProductListDto getProductOne(int id) {
+        return productMapper.getProductOne(id);
+    }
 }

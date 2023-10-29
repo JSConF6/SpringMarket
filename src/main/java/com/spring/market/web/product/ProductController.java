@@ -24,6 +24,8 @@ public class ProductController {
 
     @GetMapping("/{productId}/detail")
     public String productDetail(@PathVariable("productId") int productId, Model model) {
+        System.out.println(productId);
+        model.addAttribute("product",productService.getProductOne(productId));
         return "product/productDetail";
     }
 
@@ -76,4 +78,5 @@ public class ProductController {
 
         return new ResponseEntity<>(new ResponseDto<>(1, "상품 상태 변경완료", null), HttpStatus.OK);
     }
+
 }

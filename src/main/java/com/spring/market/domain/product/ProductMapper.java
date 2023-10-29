@@ -25,4 +25,6 @@ public interface ProductMapper {
     void productImageAdd (ProductImageDto productImageDto);
 
     void sailComplete(int id);
+
+    ProductListDto getProductOne(int id);
 }

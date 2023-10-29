@@ -9,6 +9,7 @@ public class ProductListDto {
     private int categoryId;
     private int placeId;
     private String name;
+    private String nickname;
     private String content;
     private int price;
     private int readCount;

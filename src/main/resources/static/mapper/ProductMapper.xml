@@ -69,7 +69,7 @@
         WHERE p.user_id = #{id}
         AND i.thumbnail = "Y"
         AND p.del_yn = "N"
-
+        GROUP BY p.id
     </select>
 
     <select id="productWishCount" parameterType="int" resultType="int">
@@ -89,5 +89,36 @@
     <update id="sailComplete" parameterType="int">
         UPDATE product SET order_status = "complete" WHERE id = #{id}
     </update>
+
+    <select id="getProductOne" parameterType="int" resultType="com.spring.market.domain.product.dto.ProductListDto">
+        SELECT
+        p.id,
+        p.user_id,
+        u.nickname,
+        p.category_id,
+        p.place_id,
+        p.name,
+        p.content,
+        p.price,
+        p.read_count,
+        p.order_status,
+        p.create_at,
+        p.update_at,
+        p.delete_at,
+        p.del_yn,
+        CONCAT("/upload/",f.name) AS file_path,
+        COUNT(w.user_id) AS wish,
+        COUNT(c.buyer_id) AS chat
+        FROM product p
+        LEFT JOIN product_images i ON p.id = i.product_id
+        LEFT JOIN files f ON i.product_image_id = f.id
+        LEFT JOIN wish w ON p.id = w.product_id
+        LEFT JOIN chat_room c ON p.id = c.product_id
+        LEFT JOIN user u ON p.user_id = u.id
+        WHERE p.id = #{id}
+        AND i.thumbnail = "Y"
+        AND p.del_yn = "N"
+
+    </select>
 
 </mapper>
